@@ -1,0 +1,22 @@
+#brand_img{
+    max-height: 90%;
+}
+ul{
+    list-style-type:none;
+}
+
+.affix{
+    top:0;
+    width: 100%;
+}
+
+.note {
+    background-color: #f3f3f0;
+    padding: 25px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+
+
+
