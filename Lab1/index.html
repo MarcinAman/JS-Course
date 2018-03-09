@@ -1,359 +1,1856 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Flowblade Documentation</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Flowblade Documentation</title>
 
-  </head>
-  <body style="height:1500px" data-spy="scroll" data-target="#tutorials_list" data-offset="50">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 
-    <!-- Main header -->
-    <header>
-      <nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#content_navbar">
-                    <span class="glyphicon glyphicon-list"></span>                        
-                  </button>
-              <a class="navbar-brand" href="#">
-                  <img src = "src/icon.png" id = "brand_img">
-              </a>
-            </div>
-            <ul class="nav navbar-nav collapse navbar-collapse" id = "content_navbar">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Download</a></li>
-              <li><a href="#">DOCS</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">About</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- End of main header -->
+</head>
 
-      <!-- Begining of options nav -->
+<body data-spy="scroll" data-target="#tutorials_list" data-offset="50">
 
-      <!-- https://www.w3schools.com/bootstrap/bootstrap_scrollspy.asp -->
-
-      <nav class="navbar navbar-inverse container-fluid" id="tutorials_list" data-spy="affix" data-offset-top="80">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tutorials_list_ul">
-          <span class="glyphicon glyphicon-list"></span>                        
+  <!-- Main header -->
+  <header>
+    <nav class="navbar">
+      <div class="navbar-header container-fluid">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#content_navbar">
+          <span class="glyphicon glyphicon-list"></span>
         </button>
-        <ul class="nav navbar-nav collapse navbar-collapse" id = "tutorials_list_ul">
-            <li class="active"><a href="#">Introduction</a></li>
-            <li><a href="#Introduction">Basic Editing</a></li>
-            <li><a href="#">Edit tools</a></li>
-            <li><a href="#">Creatring composed images</a></li>
-            <li><a href="#">Filtering image and audio</a></li>
-            <li><a href="#">Advanced editing</a></li>
-            <li><a href="#">Range log</a></li>
-            <li><a href="#">Proxy editing</a></li>
-            <li><a href="#">Tools</a></li>
-            <li><a href="#">Rendering</a></li>
-        </ul>
-      </nav>
+        <a class="navbar-brand" href="#">
+          <img src="src/icon.png" id="brand_img">
+        </a>
+      </div>
+      <ul class="nav navbar-nav collapse navbar-collapse" id="content_navbar">
+        <li class="active">
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Download</a>
+        </li>
+        <li>
+          <a href="#">DOCS</a>
+        </li>
+        <li>
+          <a href="#">Features</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- End of main header -->
 
-      <!-- have 0 idea why navbar-sticky-top doesnt work
+  <!-- Begining of options nav -->
+
+  <!-- https://www.w3schools.com/bootstrap/bootstrap_scrollspy.asp -->
+
+  <nav class="navbar navbar-inverse container-fluid" id="tutorials_list" data-spy="affix" data-offset-top="80">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tutorials_list_ul">
+      <span class="glyphicon glyphicon-list" id="white_glyphicon"></span>
+    </button>
+    <ul class="nav navbar-nav collapse navbar-collapse" id="tutorials_list_ul">
+      <li>
+        <a href="#Introduction">Introduction</a>
+      </li>
+      <li>
+        <a href="#Basic Editing">Basic Editing</a>
+      </li>
+      <li>
+        <a href="#Edit tools">Edit tools</a>
+      </li>
+      <li>
+        <a href="#Creatring composed images">Creatring composed images</a>
+      </li>
+      <li>
+        <a href="#Filtering image and audio">Filtering image and audio</a>
+      </li>
+      <li>
+        <a href="#Advanced editing">Advanced editing</a>
+      </li>
+      <li>
+        <a href="#Range log">Range log</a>
+      </li>
+      <li>
+        <a href="#Proxy editing">Proxy editing</a>
+      </li>
+      <li>
+        <a href="#Tools">Tools</a>
+      </li>
+      <li>
+        <a href="#Rendering">Rendering</a>
+      </li>
+    </ul>
+    <p class="navbar-text navbar-toggle pull-left" id="content_nav_bar_content">Content</p>
+  </nav>
+
+  <!-- have 0 idea why navbar-sticky-top doesnt work
           https://www.w3schools.com/bootstrap/bootstrap_affix.asp
          -->
 
-      <!-- End of options nav -->
+  <!-- End of options nav -->
 
-      <!-- Introduction content -->
-      <div class="container" id="Introduction">
-        <h1>Introduction</h1>
-          <p>
-              Flowblade Movie Editor is a <b>multitrack non-linear video editor</b> for Linux.
-          <br><br>
-              With Flowblade Movie Editor you can compose movies from video clips, audio clips and graphics files. Clips can be cut at the desired frames, filters can be added to clips, and you can create multilayer composite images using compositor objects.
-          <br><br>
-              In Flowblade clips are usually automatically placed tightly after the previous clip - or between two existing clips - when they are inserted on the timeline. Edits are fine tuned by trimming in and out points of clips, or by cutting and deleting parts of clips. 
-        </p>
-      </div>
+  <!-- Introduction content -->
+  <div class="container" id="Introduction">
+    <h1>Introduction</h1>
+    <p>
+      Flowblade Movie Editor is a
+      <b>multitrack non-linear video editor</b> for Linux.
+      <br>
+      <br> With Flowblade Movie Editor you can compose movies from video clips, audio clips and graphics files. Clips can be
+      cut at the desired frames, filters can be added to clips, and you can create multilayer composite images using compositor
+      objects.
+      <br>
+      <br> In Flowblade clips are usually automatically placed tightly after the previous clip - or between two existing clips
+      - when they are inserted on the timeline. Edits are fine tuned by trimming in and out points of clips, or by cutting
+      and deleting parts of clips.
+    </p>
+  </div>
 
-      <!-- Basic Editing content -->
-      <div class = "container" id="Basic Editing">
-        <h1>Basic Editing</h1>
-        <h3>Creating a New Project</h3>
-          <p>
-          Flowblade Movie Editor saves work in project files.
-          </p>
-          <p>
-          To create a new Project:
-          </p>
-          <ul>
-          <li> <b>Menu:</b> Select <b>File -&gt; New</b> from menu.</li>
-          <li> <b>Keyboard Shortcut:</b> Press <b>Control+N</b>.</li>
-          </ul>
-          <p>
-          A project contains:
-          </p>
-          <ul>
-          <li> one or more Sequences of edited media</li>
-          <li> a collection of Media Files stored in Bins.</li>
-          </ul>
-          <p>
-          There are two parameters that can be selected for a new project:
-          </p>
-          <ul>
-          <li> <b>Project Profile</b> Project Profile determines frame rate per second, image size in pixels and pixel aspect ratio.</li>
-          <li> <b>Tracks count</b> Select the number of video and audio tracks that are used in the project. This can be changed later, but the operation destroys the Undo / Redo stack and all the Timeline Clips that do not fit in the newly created version of the Sequence.</li>
-          </ul>
+  <!-- Basic Editing content -->
 
-          <div class="note">
-          <p>Video material is internally scaled to profile dimensions, so selecting Project Profile with smaller pixel dimensions than the rendered output leads to decreased quality.
-            </p>
-          </div>
-          <div class="note">
-            <p>
-          Flowblade Movie Editor handles image data internally as YUV420 frames, so the encoding associated with a given profile has no affect on quality before rendering.
-            </p>
-        </div>
-          <div class="note">
-            <p>
-          For <b>best possible quality</b> the <b>input material, Project Profile and Rendering Profile</b> should <b>all have the same pixel dimensions</b> and pixel aspect ratio.
-            </p>
-        </div>
+  <div class="container" id="Basic Editing">
+    <h1>Basic Editing</h1>
+    <h3>
+      <a name="Creating_a_New_Project">Creating a New Project</a>
+    </h3>
+    <p>
+      Flowblade Movie Editor saves work in project files.
+    </p>
+    <p>
+      To create a new Project:
+    </p>
+    <ul>
+      <li>
+        <b>Menu:</b> Select
+        <b>File -&gt; New</b> from menu.</li>
+      <li>
+        <b>Keyboard Shortcut:</b> Press
+        <b>Control+N</b>.</li>
+    </ul>
+    <p>
+      A project contains:
+    </p>
+    <ul>
+      <li> one or more Sequences of edited media</li>
+      <li> a collection of Media Files stored in Bins.</li>
+    </ul>
+    <p>
+      There are two parameters that can be selected for a new project:
+    </p>
+    <ul>
+      <li>
+        <b>Project Profile</b> Project Profile determines frame rate per second, image size in pixels and pixel aspect ratio.</li>
+      <li>
+        <b>Tracks count</b> Select the number of video and audio tracks that are used in the project. This can be changed later,
+        but the operation destroys the Undo / Redo stack and all the Timeline Clips that do not fit in the newly created
+        version of the Sequence.</li>
+    </ul>
 
-          <h3>Adding and removing new Sequences</h3>
-          <p>
-          A Project contains one or more Sequences. The term Sequence refers to the full contents of the timeline forming a program, a movie.
-          </p>
-          <p>
-          For complex projects it is sometimes best to use multiple sequences for creating and managing different parts of the finished product.
-          </p>
-          <p>
-          Use <b>Add</b> and <b>Delete</b> buttons in the <b>Project</b> tab <b>Sequences</b> panel. All Sequences use the same Profile.
-          </p>
-          <p>
-          When creating a new Sequence, you can choose the number of Tracks in the Sequence. This can be changed later, but the operation destroys the Undo / Redo stack and all the Timeline Clips that do not fit in the newly created version of the Sequence.
-          </p>
+    <div class="note">
+      Video material is internally scaled to profile dimensions, so selecting Project Profile with smaller pixel dimensions than
+      the rendered output leads to decreased quality.
+    </div>
+    <div class="note">
+      Flowblade Movie Editor handles image data internally as YUV420 frames, so the encoding associated with a given profile has
+      no affect on quality before rendering.
+    </div>
+    <div class="note">
+      For
+      <b>best possible quality</b> the
+      <b>input material, Project Profile and Rendering Profile</b> should
+      <b>all have the same pixel dimensions</b> and pixel aspect ratio.
+    </div>
 
-          <h3>Working with Media Files</h3>
+    <h3>
+      <a name="Adding_and_removing_new_Sequences">Adding and removing new Sequences</a>
+    </h3>
+    <p>
+      A Project contains one or more Sequences. The term Sequence refers to the full contents of the timeline forming a program,
+      a movie.
+    </p>
+    <p>
+      For complex projects it is sometimes best to use multiple sequences for creating and managing different parts of the finished
+      product.
+    </p>
+    <p>
+      Use
+      <b>Add</b> and
+      <b>Delete</b> buttons in the
+      <b>Project</b> tab
+      <b>Sequences</b> panel. All Sequences use the same Profile.
+    </p>
+    <p>
+      When creating a new Sequence, you can choose the number of Tracks in the Sequence. This can be changed later, but the operation
+      destroys the Undo / Redo stack and all the Timeline Clips that do not fit in the newly created version of the Sequence.
+    </p>
 
-          <p>
-          Flowblade Movie Editor holds files in <b>Media</b> tab. Files are listed in unnamed table that displays contents of the currently selected Bin. Bins are listed in the <b>Bins</b> table.
-          </p>
+    <h3>
+      <a name="Working_with_Media_Files">Working with Media Files</a>
+    </h3>
 
-          <p>
-          Opening Media Files:
-          </p>
+    <p>
+      Flowblade Movie Editor holds files in
+      <b>Media</b> tab. Files are listed in unnamed table that displays contents of the currently selected Bin. Bins are listed
+      in the
+      <b>Bins</b> table.
+    </p>
 
-          <ol>
-          <li> Press <b>Add</b> button above the unnamed Bin contents table in the <b>Media</b> tab.</li>
-          <li> Use dialog to find and select files.</li>
-          <li> Files are displayed as thumbnails.</li>
-          <li> Note that creating thumbnails for opened files will take some time.</li>
-          </ol>
+    <p>
+      Opening Media Files:
+    </p>
 
-          <div class="note">
-          <h3>Project Media: Absolute and relative paths</h3>
-          <ul>
-          <li> Flowblade <b>saves references</b> to media files used in a project as <b>absolute paths</b>.</li>
-          <li> If a media is <b>not found on load</b>, Flowblade attempts to find a media file with the same name in subfolders relative to the project file.</li>
-          <li> If all media used by a project is saved in subfolders relative to project file, <b>project file and media can moved as a unit</b> and the project will load successfully after data is copied to a different place</li>
-          <li> <b>Rendered files</b> like transitions <b>are saved by default in a hidden folder</b> <i><home folder="">/.flowblade/rendered_clips/</home></i>.</li>
-          <li> Menu item <b>File-&gt;Save Backup Snapshot...</b> saves project file, all media and rendered files in a single folder that can saved as unit and and project can always be loaded using this data </li>
-          <li> <b>Load order</b> between absolute and relative paths can be set in preferences window</li>
-          <li> <b>Media Relinker</b> tool can be used to fix problems that may occur </li>
+    <ol>
+      <li> Press
+        <b>Add</b> button above the unnamed Bin contents table in the
+        <b>Media</b> tab.</li>
+      <li> Use dialog to find and select files.</li>
+      <li> Files are displayed as thumbnails.</li>
+      <li> Note that creating thumbnails for opened files will take some time.</li>
+    </ol>
 
-          </ul>
-          <p><b>NOTE:</b> Information given here only applies to version 0.18 and above.</p>
-          </div>
+    <div class="note">
+      <h3>Project Media: Absolute and relative paths</h3>
+      <ul>
+        <li> Flowblade
+          <b>saves references</b> to media files used in a project as
+          <b>absolute paths</b>.</li>
+        <li> If a media is
+          <b>not found on load</b>, Flowblade attempts to find a media file with the same name in subfolders relative to the
+          project file.</li>
+        <li> If all media used by a project is saved in subfolders relative to project file,
+          <b>project file and media can moved as a unit</b> and the project will load successfully after data is copied to a
+          different place</li>
+        <li>
+          <b>Rendered files</b> like transitions
+          <b>are saved by default in a hidden folder</b>
+          <i>
+            <home folder="">/.flowblade/rendered_clips/</home>
+          </i>.</li>
+        <li> Menu item
+          <b>File-&gt;Save Backup Snapshot...</b> saves project file, all media and rendered files in a single folder that can
+          saved as unit and and project can always be loaded using this data </li>
+        <li>
+          <b>Load order</b> between absolute and relative paths can be set in preferences window</li>
+        <li>
+          <b>Media Relinker</b> tool can be used to fix problems that may occur </li>
 
-          <h3>Working with Bins</h3>
+      </ul>
+      <p>
+        <b>NOTE:</b> Information given here only applies to version 0.18 and above.</p>
+    </div>
 
-          <p>
-          In video editing a bin is a location for storing media. The term is used in Avid and was earlier used by film editors.
-          </p>
+    <h3>
+      <a name="Working_with_Bins">Working with Bins</a>
+    </h3>
 
-          <p>
-          For small projects using bins is usually not needed and you can hide the Bin panel by dragging a handle between the panels.
-          </p>
-            
-          <div class="tabbed">
-          <p><b>Adding a Bin</b>: Press <b>Add</b> button above Bins table.</p>
-          <p><b>Deleting a Bin</b>: Press <b>Delete</b> button above Bins table.
-          Bin must be empty before removing. A project must always have at least one Bin.</p>
-          <p><b>Renaming a Bin</b>: Double click on the Bin name.</p>
-          <p><b>Moving files to another Bin:</b> Drag files on top of bin icon.</p>
-          </div>
+    <p>
+      In video editing a bin is a location for storing media. The term is used in Avid and was earlier used by film editors.
+    </p>
 
-          <h3>Using Timeline</h3>
+    <p>
+      For small projects using bins is usually not needed and you can hide the Bin panel by dragging a handle between the panels.
+    </p>
 
-          <h4>Scrolling Timeline</h4>
-          <ul>
-          <li> Press and Drag <b>Scrollbar</b> below Timeline</li>
-          <li> Scroll <b>Mouse Middle</b> button + <b>CTRL</b> key while on top of Timeline</li>
-          </ul>
+    <div class="tabbed">
+      <p>
+        <b>Adding a Bin</b>: Press
+        <b>Add</b> button above Bins table.</p>
+      <p>
+        <b>Deleting a Bin</b>: Press
+        <b>Delete</b> button above Bins table. Bin must be empty before removing. A project must always have at least one Bin.</p>
+      <p>
+        <b>Renaming a Bin</b>: Double click on the Bin name.</p>
+      <p>
+        <b>Moving files to another Bin:</b> Drag files on top of bin icon.</p>
+    </div>
 
-          <h4>Zooming Timeline</h4>
-          <ul>
-          <li> Click <b>Zoom In</b>, <b>Zoom Out</b> or <b>Zoom Length</b> buttons.</li>
-          <li> Scroll <b>Mouse Middle</b> button on top of Timeline </li>
-          </ul>
+    <h3>
+      <a name="Using_Timeline">Using Timeline</a>
+    </h3>
 
-          <h4>Changing Current Frame</h4>
-          <ul>
-          <li> Drag with <b>Right Mouse</b> button starting from  an empty space in the Timeline.</li>
-          <li> Drag with <b>Left Mouse</b> button on the Frame Scale.</li>
-          <li> Drag with <b>Left Mouse</b> on the Monitor Position Bar.</li>
-          <li> Click <b>Left Arrow</b> key or <b>Right Arrow</b> key to move to next or previous frame.</li>
-          <li> Click <b>Up Arrow</b> key or <b>Down Arrow</b> key to move to next or previous cut on topmost active track.</li>
-          <li> Click <b>Next</b> or <b>Prev</b> button in Monitor Buttons area to move to next or previous frame.</li>
-          </ul>
+    <h4>
+      <a name="Scrolling_Timeline">Scrolling Timeline</a>
+    </h4>
+    <ul>
+      <li> Press and Drag
+        <b>Scrollbar</b> below Timeline</li>
+      <li> Scroll
+        <b>Mouse Middle</b> button +
+        <b>CTRL</b> key while on top of Timeline</li>
+    </ul>
 
-          <h4>Changing Current Frame when Clip is displayed on Monitor</h4>
-          <ul>
-          <li> Drag with <b>Left Mouse</b> on the Monitor Position Bar.</li>
-          <li> Click <b>Left Arrow</b> key or <b>Right Arrow</b> key to move to next or previous frame.</li>
-          <li> Click <b>Up Arrow</b> key or <b>Down Arrow</b> key to move to next or previous of the following: Mark In/Mark Out/Start/End</li>
-          <li> Click <b>Next</b> or <b>Prev</b> button in Monitor Buttons area to move to next or previous frame.</li>
-          </ul>
+    <h4>
+      <a name="Zooming_Timeline">Zooming Timeline</a>
+    </h4>
+    <ul>
+      <li> Click
+        <b>Zoom In</b>,
+        <b>Zoom Out</b> or
+        <b>Zoom Length</b> buttons.</li>
+      <li> Scroll
+        <b>Mouse Middle</b> button on top of Timeline </li>
+    </ul>
 
-          <h4>Switching between Timeline and Clip Display</h4>
-          <ul>
-          <li> Click buttons with icons representing sequence or single clip in Monitor Buttons area.</li>
-          <li> Drag Media File on top of <b>Monitor</b> to display Clip.</li>
-          </ul>
+    <h4>
+      <a name="Changing_Current_Frame">Changing Current Frame</a>
+    </h4>
+    <ul>
+      <li> Drag with
+        <b>Right Mouse</b> button starting from an empty space in the Timeline.</li>
+      <li> Drag with
+        <b>Left Mouse</b> button on the Frame Scale.</li>
+      <li> Drag with
+        <b>Left Mouse</b> on the Monitor Position Bar.</li>
+      <li> Click
+        <b>Left Arrow</b> key or
+        <b>Right Arrow</b> key to move to next or previous frame.</li>
+      <li> Click
+        <b>Up Arrow</b> key or
+        <b>Down Arrow</b> key to move to next or previous cut on topmost active track.</li>
+      <li> Click
+        <b>Next</b> or
+        <b>Prev</b> button in Monitor Buttons area to move to next or previous frame.</li>
+    </ul>
 
-          <h4>Setting Active Tracks</h4>
-          <ul>
-          <li> Click <b>Track Active Switch</b> on the right side of Tracks Column area. Topmost  <b>Track Active Switch</b> displays arrow pointing downwards indicating that <b>Insert From Monitor</b> and other buttons place clips on that track.</li>
-          </ul>
+    <h4>
+      <a name="Changing_Current_Frame_when_Clip_is_displayed_on_Monitor">Changing Current Frame when Clip is displayed on Monitor</a>
+    </h4>
+    <ul>
+      <li> Drag with
+        <b>Left Mouse</b> on the Monitor Position Bar.</li>
+      <li> Click
+        <b>Left Arrow</b> key or
+        <b>Right Arrow</b> key to move to next or previous frame.</li>
+      <li> Click
+        <b>Up Arrow</b> key or
+        <b>Down Arrow</b> key to move to next or previous of the following: Mark In/Mark Out/Start/End</li>
+      <li> Click
+        <b>Next</b> or
+        <b>Prev</b> button in Monitor Buttons area to move to next or previous frame.</li>
+    </ul>
 
-          <div class="note">
-          <h4>Effects of Track Active State</h4>
-          <ul>
-          <li> Cuts are only performed on active Tracks.</li>
-          <li> Inserting Media File that is currently displayed in Monitor using <b>Insert From Monitor, Append From Monitor</b> or <b>3-Point Ovewrite</b> buttons places clip on the top most active Track indicated by arrow icon.</li>
-          </ul>
-          </div>
+    <h4>
+      <a name="Switching_between_Timeline_and_Clip_Display">Switching between Timeline and Clip Display</a>
+    </h4>
+    <ul>
+      <li> Click buttons with icons representing sequence or single clip in Monitor Buttons area.</li>
+      <li> Drag Media File on top of
+        <b>Monitor</b> to display Clip.</li>
+    </ul>
 
-          <h4>Selecting single clip</h4>
-          <ul>
-          <li> Click on a clip with <b>Left Mouse</b> button.</li>
-          </ul>
+    <h4>
+      <a name="Setting_Active_Tracks">Setting Active Tracks</a>
+    </h4>
+    <ul>
+      <li> Click
+        <b>Track Active Switch</b> on the right side of Tracks Column area. Topmost
+        <b>Track Active Switch</b> displays arrow pointing downwards indicating that
+        <b>Insert From Monitor</b> and other buttons place clips on that track.</li>
+    </ul>
 
-          <h4>Selecting multiple clips on the same track</h4>
-          <ul>
-          <li> Click on a clip with <b>Left Mouse</b> button.</li>
-          <li> Click on another clip on the same track with <b>Control + Left Mouse</b> button.</li>
-          <li> All clips between clicked clips will be selected.</li>
-          </ul>
+    <div class="note">
+      <h4>
+        <a name="Effects_of_Track_Active_State">Effects of Track Active State</a>
+      </h4>
+      <ul>
+        <li> Cuts are only performed on active Tracks.</li>
+        <li> Inserting Media File that is currently displayed in Monitor using
+          <b>Insert From Monitor, Append From Monitor</b> or
+          <b>3-Point Ovewrite</b> buttons places clip on the top most active Track indicated by arrow icon.</li>
+      </ul>
+    </div>
 
-          <h4>De-selecting all clips</h4>
-          <ul>
-          <li> Click on Timeline area background.</li>
-          </ul>
+    <h4>
+      <a name="Selecting_single_clip">Selecting single clip</a>
+    </h4>
+    <ul>
+      <li> Click on a clip with
+        <b>Left Mouse</b> button.</li>
+    </ul>
 
-          <h3>Adding clips to Sequence</h3>
+    <h4>
+      <a name="Selecting_multiple_clips_on_the_same_track">Selecting multiple clips on the same track</a>
+    </h4>
+    <ul>
+      <li> Click on a clip with
+        <b>Left Mouse</b> button.</li>
+      <li> Click on another clip on the same track with
+        <b>Control + Left Mouse</b> button.</li>
+      <li> All clips between clicked clips will be selected.</li>
+    </ul>
 
-          <h4>Drag'n'Drop</h4>
-          <ul>
-          <li> Press on a Media File in <b>Media</b> tab and drag it on top of the track you want to place it on. </li>
+    <h4>
+      <a name="De-selecting_all_clips">De-selecting all clips</a>
+    </h4>
+    <ul>
+      <li> Click on Timeline area background.</li>
+    </ul>
 
-          <li> <i>'Overwrite blank' </i> is selected as preference for drag'n'drop action:</li>
-          <ul>
-          <li> On track V1 clip will be inserted on the track at the nearest cut. </li>
-          <li> On non-V1 tracks:. </li>
-          <ul>
+    <h3>
+      <a name="Adding_clips_to_Sequence_">Adding clips to Sequence </a>
+    </h3>
+
+    <h4>
+      <a name="Drag&#39;n&#39;Drop">Drag'n'Drop</a>
+    </h4>
+    <ul>
+      <li> Press on a Media File in
+        <b>Media</b> tab and drag it on top of the track you want to place it on. </li>
+
+      <li>
+        <i>'Overwrite blank' </i> is selected as preference for drag'n'drop action:</li>
+      <ul>
+        <li> On track V1 clip will be inserted on the track at the nearest cut. </li>
+        <li> On non-V1 tracks:. </li>
+        <ul>
           <li> Clip will be inserted if dropped on a clip. </li>
-          <li> Clip will overwrite available blank and empty space and will perform insert for the length of frames that would be overwritten.  </li>
-          </ul>
-          </ul>
-          <li>  <i>'Always Insert' </i> is selected as preference for drag'n'drop action:</li>
+          <li> Clip will overwrite available blank and empty space and will perform insert for the length of frames that would
+            be overwritten. </li>
+        </ul>
+      </ul>
+      <li>
+        <i>'Always Insert' </i> is selected as preference for drag'n'drop action:</li>
+      <ul>
+        <li> Clip will be inserted on the track at the nearest cut. </li>
+      </ul>
+    </ul>
+
+    <h4>
+      <a name="From_Monitor">From Monitor</a>
+    </h4>
+    <ol>
+      <li>Open clip in Monitor by either:</li>
+      <ul>
+        <li> double clicking on thumbnail icon,</li>
+        <li> dragging Media File on top of Monitor or</li>
+        <li> selecting
+          <b>Open in Clip Monitor</b> item from
+          <b>Right Mouse</b> context menu.</li>
+      </ul>
+      <li>Select insert range</li>
+      <ul>
+        <li> Use
+          <b>Mark In</b> and
+          <b>Mark Out</b> buttons to select range. </li>
+        <li> Use
+          <b>I</b> an
+          <b>O</b> keys to set to select range.</li>
+        <li> If range is not set, then the full clip length will be inserted.</li>
+      </ul>
+      <li>Press
+        <b>Insert From Monitor</b> button</li>
+      <ul>
+        <li> Clip will be inserted on the first active track at the cut nearest of the currently displayed frame. First active
+          track is marked by down arrow in the track Active Switch.</li>
+      </ul>
+    </ol>
+
+    <h3>
+      <a name="Editing_Clips_on_Timeline">Editing Clips on Timeline</a>
+    </h3>
+    <p>
+      Once you have placed clips on the Timeline to form a Sequence, you will probably need to refine the cuts between clips.
+    </p>
+    <h4>
+      <a name="Trimming_Clips">Trimming Clips</a>
+    </h4>
+    <p>
+      Use
+      <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#trim">Trim Tool</a>,
+      <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#roll">Roll Tool</a> or
+      <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#slip">Slip Tool</a>
+    </p>
+
+    <h4>
+      <a name="Moving_Clips">Moving Clips</a>
+    </h4>
+    <p>
+      Use
+      <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#insert">Insert Tool</a>,
+      <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#overwrite">Overwrite Tool</a> or
+      <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#spacer">Spacer Tool</a>
+    </p>
+
+    <h4>
+      <a name="Cutting_Clips">Cutting Clips</a>
+    </h4>
+    <ol>
+      <li>Select cut frame</li>
+      <ul>
+        <li> Cut is always made before the currently displayed frame on all active tracks.</li>
+      </ul>
+      <li>Cut clip</li>
+      <ul>
+        <li> Press
+          <b>Cut</b> button or press
+          <b>X</b> on the keyboard.</li>
+      </ul>
+    </ol>
+
+
+    <h4>
+      <a name="Deleting_Clips">Deleting Clips</a>
+    </h4>
+    <p>
+      <b>Splice Out</b>: Select clip(s) and press
+      <b>Delete</b> key or use the
+      <b>Splice Out</b> button on middle bar. All the clips in the track after the deleted clip(s) are moved to left to cover
+      the created empty space. Some editors call this operation
+      <i>Ripple Delete</i>.</p>
+    <p>
+      <b>Lift</b>: Select clip(s) and press the
+      <b>Lift</b> button on the middle bar. Clip is replaced with a blank if it is in middle of track. Other clips on the track
+      are not moved.
+    </p>
+    <p>
+      <b>Fade/Transition cover delete</b>: Select a single rendered fade or transition clip and press
+      <b>Delete</b> key or button. If clips before and after of the deleted clip have frames available, then the space left
+      by the deleted clip will covered using material from adjacent clips. If material is not available a splice out will
+      be performed. A preference exists to always perform splice out on fades and transitions.
+
+    </p>
+    <div class="note">
+      <b>Use Keyboard Shortcuts!</b> It is much faster to use
+      <b>X</b> key to cut clips and
+      <b>Delete</b> key to splice out clips than it is to use buttons for the same operations.
+    </div>
+
+    <h3>
+      <a name="Rendering_Movie">Rendering Movie</a>
+    </h3>
+
+    <h4>
+      <a name="Selecting_Parameters">Selecting Parameters</a>
+    </h4>
+    <ul>
+      <li>
+        <b>Folder File Select</b> button selects folder to place the rendered file.</li>
+      <li>
+        <b>Name</b> entry widget provides means to set the name of the output file.</li>
+      <li> Use
+        <b>Encoding Format</b> and untitled
+        <b>Quality</b> drop down menus make to select the type of file to be rendered.</li>
+    </ul>
+
+    <h4>
+      <a name="Rendering_output">Rendering output</a>
+    </h4>
+    <ol>
+      <li>Press
+        <b>Render</b> Button to begin rendering.</li>
+      <li>A Render Window will open displaying information on file path of render file, estimated time left, render time and
+        a Progress bar widget.</li>
+      <li>After rendering is complete, Render Window will close automatically.</li>
+    </ol>
+  </div>
+
+  <!-- end of Basic Editing -->
+
+  <!-- Begining of Edit tools -->
+
+  <div class="container" id="Edit tools">
+    <h1>Edit Tools</h1>
+    <h3>
+      <a name="Insert_Tool">Insert Tool</a>
+    </h3>
+
+    <p>
+      Splice out one or more clips and insert them at desired cut on any track.
+    </p>
+
+    <ol>
+      <li>Pick 'Insert' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>1</b> key.</li>
+      </ul>
+      <li>Select clip</li>
+      <ul>
+        <li> Click
+          <b>Left Mouse</b> on a clip.</li>
+      </ul>
+      <li>Select other end of clip range if moving multiple clips</li>
+      <ul>
+        <li> Click
+          <b>CTRL+Left Mouse</b> on the clip you wish to be the other end of move clip range.</li>
+      </ul>
+      <li>Drag Clip(s) to new position</li>
+      <ul>
+        <li> Press
+          <b>Left Mouse</b> on a selecetd clip and drag clip/s to a new position.</li>
+        <li> Yellow arrow displays insert point.</li>
+        <li> You can also move clips to a different track.</li>
+      </ul>
+    </ol>
+
+    <a id="overwrite"></a>
+    <h3>
+      <a name="Overwrite_Tool">Overwrite Tool</a>
+    </h3>
+
+    <p>
+      Lift out one or more clips and insert them at any point to overwrite on any track.
+    </p>
+
+    <ol>
+      <li>Pick 'Overwrite' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>2</b> key.</li>
+      </ul>
+      <li>Select clip</li>
+      <ul>
+        <li>
+          <b> Click </b>Left Mouse
+          <b> on a clip.</b>
+        </li>
+        <b>
+        </b>
+        <li>
+          <b></b> Select other end of clip range if moving multiple clips. Click
+          <b>CTRL+Left Mouse</b> on the clip you wish to be the other end of move clip range.</li>
+      </ul>
+      <li>Drag Clip(s) to new position</li>
+      <ul>
+        <li> Press
+          <b>Left Mouse</b> on a selecetd clip and drag clip/s to a new position.</li>
+        <li> Red shadow clips show overwrite area.</li>
+        <li> You can also move clips to a different track.</li>
+      </ul>
+    </ol>
+
+    <a id="trim"></a>
+    <h3>
+      <a name="Trim_Tool">Trim Tool</a>
+    </h3>
+    <p>
+      Make clip longer or shorter from either clip's end or from clip's beginning.
+    </p>
+    <ol>
+      <li> Pick 'Trim' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>3</b> key.</li>
+      </ul>
+      <li> Select trimmed cut and select new in or out frame</li>
+      <ul>
+        <li> Press with
+          <b>Left Mouse</b> on a clip near the side you wish to trim</li>
+        <li> Continue on to
+          <b>Left drag</b> on clip to select new in or out frame</li>
+      </ul>
+      <li> View trimmed cut</li>
+      <ul>
+        <li> Press
+          <b>Play Loop</b> button to view edit.</li>
+      </ul>
+      <li> Select new trim from another clip</li>
+      <ul>
+        <li> Click with
+          <b>Left Mouse</b> on another clip near the side you wish to trim</li>
+      </ul>
+      <li> Select other end of same clip to trim</li>
+      <ul>
+        <li> Click on empty space on the Timeline</li>
+        <li> Click with
+          <b>Left Mouse</b> on the original clip near the side you wish to trim</li>
+      </ul>
+    </ol>
+
+    <a id="rippletrim"></a>
+    <h3>
+      <a name="Trim_Tool_Multi_Track_Ripple_Mode">Trim Tool Multi Track Ripple Mode</a>
+    </h3>
+    <p>
+      Make clip longer or shorter from either clip's end or from clip's beginning and move items on other tracks to maintain position
+      sync with trimmed track.
+    </p>
+    <ol>
+      <li> Pick 'Trim' tool</li>
+      <ul>
+        <li> Press
+          <b>R</b> key to switch to Multi Track Ripple mode.</li>
+      </ul>
+      <li> Select trimmed cut and select new in or out frame</li>
+      <ul>
+        <li> Press with
+          <b>Left Mouse</b> on a clip near the side you wish to trim</li>
+        <li> Continue on to
+          <b>Left drag</b> on clip to select new in or out frame</li>
+      </ul>
+      <li>Items after trim point maintain position sync with trimmed track.</li>
+      <li>Trim range is limited so that no overwrites can happen on other tracks.</li>
+      <li> Press
+        <b>R</b> key to exit to Multi Track Ripple mode.</li>
+    </ol>
+
+
+    <a id="roll"></a>
+    <h3>
+      <a name="Roll_Tool">Roll Tool</a>
+    </h3>
+
+    <p>Move edit point between two clips so that their combined length stays the same.</p>
+
+    <ol>
+      <li> Pick 'Roll' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>4</b> key.</li>
+      </ul>
+      <li> Select trimmed cut and select new in or out frames</li>
+      <ul>
+        <li> Press with
+          <b>Left Mouse</b> on a clip near the cut you wish to trim on the side you wish to view while trimming</li>
+        <li> Continue on to
+          <b>Left drag</b> on the two selected clips to select in or out frames for both clips </li>
+      </ul>
+      <li> View trimmed cut</li>
+      <ul>
+        <li> Press
+          <b>Play Loop</b> button to view edit.</li>
+      </ul>
+      <li> Select new trim from another clip</li>
+      <ul>
+        <li> Click on empty space on the Timeline</li>
+        <li> Click with
+          <b>Left Mouse</b> near the cut you wish to trim</li>
+      </ul>
+    </ol>
+
+    <a id="slip"></a>
+    <h3>
+      <a name="Slip_Tool">Slip Tool</a>
+    </h3>
+
+    <p>Change the displayed area of media in a clip while keeping the clip position unchanged on the timeline.</p>
+
+    <ol>
+      <li>Pick 'Slip' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>5</b> key.</li>
+      </ul>
+      <li>Select trimmed clip and change displayed media</li>
+      <ul>
+        <li> Press with
+          <b>Left Mouse</b> on a clip you wish to slip trim</li>
+        <li> Continue on to
+          <b>Left drag</b> from clip area to display different area of media</li>
+      </ul>
+      <li>Select new trim from another clip</li>
+      <ul>
+        <li> Click on empty space on the Timeline</li>
+        <li> Click with
+          <b>Left Mouse</b> on the clip you wish to trim</li>
+      </ul>
+    </ol>
+
+    <a id="spacer"></a>
+    <h3>
+      <a name="Spacer_Tool">Spacer Tool</a>
+    </h3>
+
+    <p>Move all Timeline items after pressed frame on all tracks or on a single track</p>
+    <ol>
+      <li>Pick 'Spacer' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>6</b> key.</li>
+      </ul>
+      <li>Select a clip on Timeline and move it and all items to the right of it</li>
+      <ul>
+        <li> Press
+          <b>Left Mouse</b> on a clip.</li>
+        <li> Continue on to
+          <b>Left drag</b> clip and all clips and compositors to right of it to a new position</li>
+        <li> It is not possible to move items on top of clips. Items can only be moved on top of empty space </li>
+      </ul>
+      <li>Use
+        <b>Control</b> button to only affect items on a single track</li>
+      <ul>
+        <li> Press
+          <b>Control</b> and use
+          <b>Left Mouse</b> to move all items on single track to the right of the selected clip</li>
+      </ul>
+    </ol>
+
+    <a id="box"></a>
+    <h3>
+      <a name="Box_Tool">Box Tool</a>
+    </h3>
+
+    <p>Select and overwrite move all Timeline items contained in a box selection.</p>
+    <ol>
+      <li>Pick 'Box' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>7</b> key.</li>
+      </ul>
+      <li>Select an area on Timeline by dragging a box selection with
+        <b>Left Mouse</b> around all items you wish to move and release mouse button.</li>
+
+      <li>Press
+        <b>Left Mouse</b> inside the box selection and drag the box into new position on timeline and release mouse.</li>
+      <li>Box contents are overwritten on new position and Compositors are moved.</li>
+
+    </ol>
+
+    <a id="movetrim"></a>
+    <h3>
+      <a name="Move_Tool_clip_end_trim">Move Tool clip end trim</a>
+    </h3>
+
+    <p>
+      When an
+      <b>Insert, Overwrite</b> or
+      <b>Spacer</b> tool is selected the ends of clips can be dragged to lengthen or shorten the clip.
+    </p>
+
+    <ol>
+      <li>Pick 'Insert', 'Overwrite' or 'Spacer' tool</li>
+      <ul>
+        <li> Use
+          <b>Tool Switcher</b> button drop menu or press
+          <b>1, 2</b> or
+          <b>6</b> key.</li>
+      </ul>
+      <li>Select clip end to trim</li>
+      <ul>
+        <li> Click
+          <b>Control + Right Mouse</b> on a clip.</li>
+      </ul>
+      <ul>
+        <li> The nearer clip end will be selected for edit.</li>
+      </ul>
+      <li>Drag clip end</li>
+      <ul>
+        <li> Added clip length will perform overwrite on blanks and empty space</li>
+      </ul>
+      <ul>
+        <li> Added clip length will perform insert on other clips</li>
+      </ul>
+      <ul>
+        <li> Decreased clip length will perform splice out.</li>
+      </ul>
+    </ol>
+  </div>
+
+  <!-- End of edit Tools -->
+
+  <!-- Begin of Creating composed images -->
+
+  <div class="container" id="Creatring composed images">
+    <h1>Creatring composed images</h1>
+
+    <p>
+      Flowblade Movie Editor uses Compositors to mix images from two different tracks. By combining multiple tracks and multiple
+      Compositors complex composite images can be achieved.
+    </p>
+
+    <h3>
+      <a name="Introduction">Introduction</a>
+    </h3>
+    <p>
+      Compositors have a Source track and a Destination track.</p>
+    <p>
+      On the Timeline Compositor is displayed as a dark rectangular object that is displayed on top of two tracks. Source track
+      is always the one above Compositor, but Destination track may be any of the tracks below it.
+    </p>
+    <p>
+      Parameters defining the resulting composite are edited in the
+      <b>Compositors</b> tab.
+    </p>
+    <p>
+      There is a subtype of Compositors called Blenders. Blenders do the standard blends like Add, Softlight and Darken, but offer
+      no transformations, nor any method to control the amount of blend.
+    </p>
+
+    <h3>
+      <a name="Compositor_Workflow">Compositor Workflow</a>
+    </h3>
+    <ol>
+      <li>Creating a Compositor
+        <ul>
+          <li> Click
+            <b>Right Mouse</b> on any clip on tracks from V5 to V2 and select for example
+            <b>Add Compositor -&gt; Dissolve</b> or
+            <b>Add Blender -&gt; Softlight</b> from popupmenu to create a new Compositor.</li>
+        </ul>
+      </li>
+      <li>Trimmimg or Moving a Compositor</li>
+      <ul>
+        <li> To trim Compositor start and end points: Press and drag
+          <b>Left Mouse</b> near either end of Compositor on Timeline.</li>
+        <li> To move Compositor: Press and drag
+          <b>Left Mouse</b> in the middle of Compositor on Timeline.</li>
+      </ul>
+      <li>Editing Compositor Parameters in Compositors Tab</li>
+      <ul>
+        <li> Double click Compositor with
+          <b>Left Mouse</b>.</li>
+        <li> Click
+          <b>Right Mouse</b> on any Compositor and select Open In Compositor Editor</li>
+        <li> Edit parameters using value editors.</li>
+      </ul>
+      <li>Deleting Compositor</li>
+      <ul>
+        <li> Click
+          <b>Left Mouse</b> on any Compositor to select it and press
+          <b>Delete</b> key.</li>
+      </ul>
+    </ol>
+
+    <h3>
+      <a name="Compositor_are_executed_from_top_to_bottom">Compositor are executed from top to bottom</a>
+    </h3>
+    In Flowblade Movie Editor
+    <b>the order of rendering is top-to-bottom</b>, instead of bottom-to-top like in Gimp or Photoshop. When attempting certain
+    type of multilayer composites this yields results that seem unintuitive, unless the user is aware of rendering order
+    of Compositors.
+
+    <h4>
+      <a name="Rendering_A_Composited_Frame">Rendering A Composited Frame</a>
+    </h4>
+    <ol>
+      <li>For each frame it is checked if there is a Compositor covering this frame on the top most track.</li>
+      <li>If such Compositor is found, do composite on Destination track.</li>
+      <li>Frame on Destination track is now altered and if that frame is used as source the altered version is used</li>
+      <li>Check if frame on next track below has compositor and if Compositor is found render the composite image</li>
+      <li>This is done for each track.</li>
+      <li>Output image on is from the topmost track that has media on the frame and does not have a compostor on the frame.</li>
+    </ol>
+
+    <h3>
+      <a name="EXAMPLE:_Creating_a_3-layer_composite">EXAMPLE: Creating a 3-layer composite</a>
+    </h3>
+    <p>
+      In this example we demonstrate how top-to-bottom Compositor order affects compositing. We are trying to make word 'GO' apperar
+      on top of 2-color background made by combining red and blue Color Clips using 'Free Stripes' wipe.
+    </p>
+    <h4>
+      <a name="Media_Items_and_desired_result">Media Items and desired result</a>
+    </h4>
+    <p>
+      To make alpha transparency work the GO.PNG graphic has to composited using 'Dissolve'.
+    </p>
+    <p>
+      <i>
+        <b>Clips: RED and BLUE Color Clips and GO.PNG graphic with alpha transparency</b>
+      </i>
+    </p>
+    <img src="src/comp_clips.png">
+
+    <p>
+      <i>
+        <b>Desired result</b>
+      </i>
+    </p>
+
+    <img src="src/correct_comp.png">
+
+    <h4>
+      <a name="Gimp/Photoshop_style_layer_order_yields_wrong_result">Gimp/Photoshop style layer order yields wrong result</a>
+    </h4>
+    <p>
+      Here we have arranged clips on the tracks as we would arrange layers in Gimp.
+    </p>
+    <p>
+      <i>
+        <b>Gimp style layer order</b>
+      </i>
+    </p>
+    <img src="src/wrong_timeline.png">
+
+    <p>
+      What happens here is that first 'GO.PNG' is composited on 'RED' Color Clip, and the resulting image is composited using 'Free
+      Stripes' wipe on top of 'BLUE' Color Clip. We get the wrong result.
+    </p>
+    <p>
+      <i>
+        <b>Wrong result</b>
+      </i>
+    </p>
+    <img src="src/wrong_comp.png">
+    <h4>
+      <a name="Correct_layer_order_when_compositing_order_is_top-to-bottom">Correct layer order when compositing order is top-to-bottom</a>
+    </h4>
+    <p>
+      Here we have arranged clips in correct order for the desired result.
+    </p>
+    <p>
+      <i>
+        <b>Correct layer order</b>
+      </i>
+    </p>
+    <img src="src/correct_timeline.png">
+    <p>
+      Here 'RED' Color Clip is first composited using 'Free Stripes' wipe on 'BLUE' Color Clip. After that 'GO.PNG' is composited
+      on top of the resulting image (that is already rendered on track V1) using 'Dissolve' to get final output image.
+    </p>
+    <p>
+      <i>
+        <b>Destination track in 'Region' Compositor is V1, Source track is V3</b>
+      </i>
+    </p>
+
+    <img src="src/correct_dest.png">
+
+
+    <p>
+      <i>
+        <b>Desired result</b>
+      </i>
+    </p>
+
+    <img src="src/correct_comp.png">
+  </div>
+
+  <!-- End of Creating composed images -->
+
+  <!-- Beinging of Filtering image and audio -->
+
+  <div class="container" id="Filtering image and audio">
+    <h1>
+      Filtering image and audio
+    </h1>
+    <p>
+      In Flowblade Movie Editor you can add a Filters to all clips to modify output image and audio.
+    </p>
+
+    <h3>
+      <a name="Filter_Workflow">Filter Workflow</a>
+    </h3>
+
+
+    <h4>
+      <a name="__Adding_Filter"> Adding Filter</a>
+    </h4>
+    <ul>
+      <li> Click
+        <b>Right Mouse</b> on any clip and select for example
+        <b>Add Filter -&gt; Blur -&gt; Pixelize</b> from popup menu.</li>
+      <li> In
+        <b>Filters</b> tab: double click on a filter in the currently displayed filters group.</li>
+      <li> In
+        <b>Filters</b> tab: drag a filter from the currently displayed filters group to the Filters Stack table below.</li>
+    </ul>
+
+    <h4>
+      <a name="_Opening_Filter_for_Editing_in_Filters_tab"> Opening Filter for Editing in Filters tab</a>
+    </h4>
+    <ul>
+      <li> Click
+        <b>Right Mouse</b> on any clip and select
+        <b>Open in Filters Editor</b> from popup menu.</li>
+      <li>
+        <b>Double click</b> on any clip.</li>
+    </ul>
+
+    <h4>
+      <a name="_Editing_Filters"> Editing Filters</a>
+    </h4>
+    <ul>
+      <li>Parameters defing output are edited in the Filters tab.</li>
+      <li> Clips will display small filter icon in the top right corner if a filter has been added to them.</li>
+      <li> Clips will display grey filter icon in the center of the clip while clip is being edited.</li>
+      <li>The filters that modify alpha channel only have effect if the clip they are attached to is mixed with other clips using
+        Compositors.
+      </li>
+    </ul>
+
+    <h4>
+      <a name="_Cloning_Filters_from_other_Clips"> Cloning Filters from other Clips</a>
+    </h4>
+    <ul>
+      <li> Click
+        <b>Right Mouse</b> on any clip and select
+        <b>Clone Filters -&gt; From Next Clip</b> or
+        <b>Clone Filters -&gt; From Previous Clip</b> from popup menu.</li>
+    </ul>
+
+    <h4>
+      <a name="_Deleting_Filters_from_Clips"> Deleting Filters from Clips</a>
+    </h4>
+    <ul>
+      <li> Select filter in Filters Stack table and click
+        <b>Delete</b> button above.</li>
+      <li> Select filter in Filters Stack table and press
+        <b>Delete</b> key.</li>
+      <li> Select clip or range of clips in Timeline and select
+        <b>Clear Filters</b> from application menu.</li>
+    </ul>
+  </div>
+
+  <!-- End of Filtering image and audio -->
+
+  <!-- Beinging of Advanced Editing -->
+
+  <div class=container id="Advanced editing">
+    <h1>Advanced editing</h1>
+    <h2>
+      <a name="1._Advanced_Project_Actions_">1. Advanced Project Actions </a>
+    </h2>
+
+
+    <h3>
+      <a name="Combining_Sequences">Combining Sequences</a>
+    </h3>
+    <p>
+      It is possible to import full contents of another Sequence into Sequence currently being edited.
+    </p>
+
+    <ol>
+      <li> Select
+        <b>Project-&gt;Import Another Sequence into this Sequnce..</b>
+      </li>
+      <li> Select Import action.</li>
+      <ul>
+        <li>
+          <b>Append Sequence</b> adds imported Sequence at the end of current Sequence</li>
+        <li>
+          <b>Insert Sequence at Playhead Position</b> creates a cut at playhead position and inserts imported Sequences at that
+          position
+        </li>
+      </ul>
+      <li> Select a Sequence to Import</li>
+      <ul>
+        <li>
+          <b>Note that you obivously need atleast two Sequences to exist to do any import actions.</b>
+        </li>
+      </ul>
+      <li> Press
+        <b>Import</b> button to execute import.</li>
+    </ol>
+
+    <h3>
+      <a name="Importing_Media_from_another_Project">Importing Media from another Project</a>
+    </h3>
+
+    <p>
+      You can import Media Items from another Project.
+    </p>
+
+    <ol>
+      <li> Select
+        <b>Project-&gt;Import Media From Project...</b>
+      </li>
+      <li> Select a Project file from file system.</li>
+      <li> Media items that are not present in current Project will be opened in the current bin. Note that it takes a few seconds
+        to load the project before new Media Items begin to appear.</li>
+    </ol>
+
+
+
+    <h2>
+      <a name="2._Compound_Clips_">2. Compound Clips </a>
+    </h2>
+
+    <p>
+      A
+      <b>Compound Clip</b> is a single clip created by combining multiple clips and compositors in to a single media item.
+    </p>
+
+    <p>
+      In Flowblade Compound Clips are
+      <i>implemented by creating an MLT XML file</i> that is saved in a hidden folder. Note that it is currently not possible
+      to unpack a Compound Clip back to its components.
+    </p>
+
+    <p>
+      Compound Clips are useful when some complex sequence is more conveniently handled as a single unit.
+    </p>
+
+    <h3>
+      <a name="_Creating_Compound_Clip_from_Selection"> Creating Compound Clip from Selection</a>
+    </h3>
+
+    <ol>
+      <li> Select 2 or more adjacent clips from a single track.</li>
+      <li> Select
+        <b>Project-&gt;Create Compound Clip-&gt;From Selected Clips</b>
+      </li>
+      <li> Give a name for the new Media Item in the dialog.</li>
+      <li> A new Media Item appears in the current Bin.</li>
+    </ol>
+
+    <h3>
+      <a name="_Creating_Compound_Clip_from_Sequence"> Creating Compound Clip from Sequence</a>
+    </h3>
+
+    <ol>
+      <li> Select
+        <b>Project-&gt;Create Compound Clip-&gt;From Current Sequence</b>
+      </li>
+      <li> Give a name for the new Media Item in the dialog.</li>
+      <li> A new Media Item appears in the current Bin.</li>
+    </ol>
+
+    <h3>
+      <a name="_Creating_audio_synced_Compound_Clip_from_two_Media_Items"> Creating audio synced Compound Clip from two Media Items</a>
+    </h3>
+
+    <ol>
+      <li> Select 2 Media Items in Media panel.</li>
+      <ul>
+        <li> The expected case is to select
+          <b>1 Video and 1 Audio Clip</b>.</li>
+        <li> If you select
+          <b>2 Video Clips</b> then which is used as video depends on selection order.</li>
+        <li> Audio from clip treated as video is muted.</li>
+      </ul>
+      <li> Select
+        <b>Project-&gt;Create Compound Clip-&gt;Audio Sync Merge Clip From 2 Media Items</b>
+      </li>
+      <li> If audio sync is successful a dialog appers. Give a name for the new Media Item in the dialog.</li>
+      <li> A new Media Item appears in the current Bin.</li>
+    </ol>
+
+    <div class="note">
+      Audio synching looks for best matemathical match between two audio waveforms, so
+      <b>audio syncing non-matching audio will produce random results.</b>
+    </div>
+
+
+    <h2>
+      <a name="3._Timeline_Audio_Syncing">3. Timeline Audio Syncing</a>
+    </h2>
+
+    <p>
+      You can make a clip to move to a position in timeline in which its audio is in sync with audio of another clip on timeline.
+    </p>
+
+    <p>
+      This enables you to do simplified version of multicam editing on the timeline.
+    </p>
+
+    <ol>
+      <li> Open context menu with
+        <b>Right Mouse</b> on Clip you wish to sync with some other clip.</li>
+      <li> Select menu item
+        <b>Select Clip to Audio Sync With...</b>. The cursor changes to a targeting cross.</li>
+      <li> Click on Clip you wish to audio sync with.</li>
+      <li> A dialog opens giving info on the sync action that is to be done to sync clips.</li>
+      <li> Press
+        <b>Do Audio Sync Move Edit</b> button to do the syncing edit.</li>
+      <li> It is usually a good idea to mute one of the synched clips</li>
+    </ol>
+
+    <div class="note">
+      Audio synching looks for best matemathical match between two audio waveforms, so
+      <b>audio syncing non-matching audio will produce random results.</b>
+    </div>
+
+    <h2>
+      <a name="4._Slow_/_Fast_Motion_and_Reverse_Clips">4. Slow / Fast Motion and Reverse Clips</a>
+    </h2>
+
+    <p>
+      In Flowblade motion effects are achived by
+      <b>rendering slow / fast motion or reverse versions of video clips</b> and placing those on the timeline.
+    </p>
+    <h3>
+      <a name="_Creating_Motion_Clips_"> Creating Motion Clips </a>
+    </h3>
+    <ol>
+      <li> Right click on a Media File and select
+        <b>Render Slow / Fast Motion File</b> from menu</li>
+      <li>Edit parameters for the new motion Clip
+        <ul>
+          <li> Set speed</li>
+          <li> Give name and location for motion Clip </li>
+          <li> Select rendering parameters for motion Clip. It is probably a good idea to use a
+            <b>lossless format</b> here to avoid any generational quality losses.</li>
+          <li> Select render range, either:</li>
           <ul>
-          <li> Clip will be inserted on the track at the nearest cut. </li>
+            <li> Full Source Clip</li>
+            <li> From Source Clip Mark In to Mark Out</li>
           </ul>
-          </ul>
+        </ul>
+      </li>
+      <li> Click
+        <b>Render</b> button to create a new motion Clip</li>
+    </ol>
 
-          <h4>From Monitor</h4>
-          <ol>
-          <li>Open clip in Monitor by either:</li>
+    <h3>
+      <a name="_Creating_Reverse_Clips_"> Creating Reverse Clips </a>
+    </h3>
+    <ol>
+      <li> Right click on a Media File and select
+        <b>Render Reverse Motion File</b> from menu</li>
+      <li>Edit parameters for the new motion Clip
+        <ul>
+          <li> Set speed</li>
+          <li> Give name and location for reverse Clip </li>
+          <li> Select rendering parameters for reverse Clip. It is probably a good idea to use a
+            <b>lossless format</b> here to avoid any generational quality losses.</li>
+          <li> Select render range, either:</li>
           <ul>
-          <li> double clicking on thumbnail icon,</li>
-          <li> dragging Media File on top of Monitor or</li>
-          <li> selecting <b>Open in Clip Monitor</b> item from <b>Right Mouse</b> context menu.</li>
+            <li> Full Source Clip</li>
+            <li> From Source Clip Mark In to Mark Out</li>
           </ul>
-          <li>Select insert range</li>
-          <ul>
-          <li> Use <b>Mark In</b> and <b>Mark Out</b> buttons to select range. </li>
-          <li> Use <b>I</b> an <b>O</b> keys to set to select range.</li>
-          <li> If range is not set, then the full clip length will be inserted.</li>
-          </ul>
-          <li>Press <b>Insert From Monitor</b> button</li>
-          <ul>
-          <li> Clip will be inserted on the first active track at the cut nearest of the currently displayed frame. First active track is marked by down arrow in the track Active Switch.</li>
-          </ul>
-          </ol>
+        </ul>
+      </li>
+      <li> Click
+        <b>Render</b> button to create a new reverse Clip</li>
+    </ol>
 
-          <h3>Editing Clips on Timeline</h3>
-          <p>
-          Once you have placed clips on the Timeline to form a Sequence, you will probably need to refine the cuts between clips.
-          </p>
-          <h4>Trimming Clips</h4>
-          <p>
-          Use <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#trim">Trim Tool</a>,  <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#roll">Roll Tool</a> or <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#slip">Slip Tool</a>
-          </p>
+    <h2>
+      <a name="5._Clip_Parenting">5. Clip Parenting</a>
+    </h2>
 
-          <h4>Moving Clips</h4>
-          <p>
-          Use  <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#insert">Insert Tool</a>,  <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#overwrite">Overwrite Tool</a> or  <a href="https://jliljebl.github.io/flowblade/webhelp/edit_tools.html#spacer">Spacer Tool</a>
-          </p>
+    <p>
+      In Flowblade Movie Editor you can
+      <b>set a clip's positions to follow another clip's positions</b> on request.
+    </p>
 
-          <h4>Cutting Clips</h4>
-          <ol>
-          <li>Select cut frame</li>
-          <ul>
-          <li> Cut is always made before the currently displayed frame on all active tracks.</li>
-          </ul>
-          <li>Cut clip</li>
-          <ul>
-          <li> Press <b>Cut</b> button or press <b>X</b> on the keyboard.</li>
-          </ul>
-          </ol>
+    <h3>
+      <a name="Main_points">Main points</a>
+    </h3>
+    <ul>
+      <li>Sync relations are set up by selecting a
+        <b>Sync Parent Clip</b> for a
+        <b>Sync Child Clip</b>.</li>
+      <li>
+        <b>Only clips on track V1 can be Sync Parent Clips</b>. This is done to encourage edit style in which the main body
+        of the Sequence is on track V1 and composites and audio split edits are done relative to the clip sequence on track
+        V1.
+      </li>
+      <li>
+        <b>Sync feature helps preserve earlier work</b> an multitrack composites and audio split edits when clips are no longer
+        in correct positions relative to each other, because of edits elsewhere on the Sequence.</li>
+      <li>
+        <b>Resyncs are only done on request</b> to avoid jumping of clips on the timeline while editing. Explicit resyncs are
+        also better from the point of view of avoiding side effects when doing edits.
+      </li>
+    </ul>
+    <h3>
+      <a name="Setting_Sync_Parent">Setting Sync Parent</a>
+    </h3>
+    <ol>
+      <li> Click
+        <b>Right Mouse</b> on clip and select Select Sync Parent Clip... on any clip NOT on track V1.</li>
+      <li> Cursor turns into a Target Cross. Click on clip on track V1 to select it as Sync Parent Clip.</li>
+      <li> Sync Relation is established between the two clips. Cursor turns back into a default pointer.</li>
+      <li> Sync State Stripe appers on the Sync Child Clip. Sync State Indicator Stripes on Clips:</li>
+      <ul>
+        <li> Green means that clip is in sync with parent.</li>
+        <li> Red means that clip is NOT in sync with parent.</li>
+        <li> Gray means that Sync Parent Clip is no longer on track V1.</li>
+      </ul>
+    </ol>
+
+    <h3>
+      <a name="Resyncing_Sync_Child_Clips">Resyncing Sync Child Clips</a>
+    </h3>
+    <ul>
+      <li> Select
+        <b>Edit -&gt; Resync All to resync</b> from application menu all Sync Child Clips.</li>
+      <li> Select
+        <b>Edit - &gt;Resync Selected to resync</b> from application menu selected Sync Child Clips.</li>
+      <li> Click
+        <b>Right Mouse</b> on Sync Child Clip and select
+        <b>Resync</b> from popoup menu to resync single clip.</li>
+      <li> Press
+        <b>Resync Selected</b> Bbtton to resync selected Sync Child Clips.</li>
+    </ul>
+
+    <h3>
+      <a name="_Clearing_Sync_Parent_Relations_"> Clearing Sync Parent Relations </a>
+    </h3>
+    <ul>
+      <li> Click
+        <b>Right Mouse</b> on Sync Child Clip and select Clear Sync Relation.</li>
+    </ul>
+
+    <h3>
+      <a name="Syncing_Composited_Clips">Syncing Composited Clips</a>
+    </h3>
+    <ul>
+      <li> If appropriate set all clips that are part of a multitrack composite synched to the same clip.</li>
+    </ul>
+
+    <h3>
+      <a name="Audio_Split_Syncing">Audio Split Syncing</a>
+    </h3>
+    <ul>
+      <li> Click
+        <b>Right Mouse</b> on clip in track V1 and select Split Audio Synched.</li>
+      <li> Edit audio split using Two Roll Trim mode to maintain sync with parent clip.</li>
+      <li> Resync Audio as needed.</li>
+    </ul>
+  </div>
+
+  <!-- End of Advanced Editing -->
 
 
-          <h4>Deleting Clips</h4>
-          <p><b>Splice Out</b>: Select clip(s) and press <b>Delete</b> key or use the <b>Splice Out</b> button on middle bar. All the clips in the track after the deleted clip(s) are moved to left to cover the created empty space. Some editors call this operation <i>Ripple Delete</i>.</p>
-          <p><b>Lift</b>: Select clip(s) and press the <b>Lift</b> button on the middle bar. Clip is replaced with a blank if it is in middle of track. Other clips on the track are not moved.
-          </p><p><b>Fade/Transition cover delete</b>: Select a single rendered fade or transition clip and press <b>Delete</b> key or button. If clips before and after of the deleted clip have frames available, then the space left by the deleted clip will covered using material from adjacent clips. If material is not available a splice out will be performed. A preference exists to always perform splice out on fades and transitions.
+  <!-- Beining of Range Log -->
 
-          </p><div class="note">
-          <b>Use Keyboard Shortcuts!</b> It is much faster to use <b>X</b> key to cut clips and <b>Delete</b> key to splice out clips than it is to use buttons for the same operations.
-          </div>
+  <div class="container" id="Range log">
+    <h1>Range log</h1>
+    <p>
+      Flowblade provides functionality save, name and manage
+      <b>in point to out point ranges</b> on media items.
+      <h3>
+        <a name="Rationale">Rationale</a>
+      </h3>
+      This functionality is mainly useful then there are
+      <b>media items that contain multiple areas of interest</b> or if the user wants to save in and out points of an edit for
+      later use.
+      <p></p>
+      <p>
+        A typical example use case for the feature would be:
+      </p>
+      <ol>
+        <li> User has a long clip of a speech delivered at some social function, congress, company event, etc.</li>
+        <li> User wants to mark and name the interesting parts of the speech</li>
+      </ol>
 
-          <h3>Rendering Movie</h3>
+      <h3>
+        <a name="Creating_Range_Log_Items">Creating Range Log Items</a>
+      </h3>
+      <h4>
+        <a name="_With_Clip_Monitor"> With Clip Monitor</a>
+      </h4>
+      <ol>
+        <li>Add Media Item to Clip Monitor</li>
+        <li>Set Mark In and Mark Out points</li>
+        <li>Press 'Log Current marked Range' -button on the bottom left in the Range Log panel</li>
+      </ol>
+      <h4>
+        <a name="Drag&#39;n&#39;Drop_from_Timeline">Drag'n'Drop from Timeline</a>
+      </h4>
+      <ol>
+        <li>Drag a Clip from Timeline on top of Items list view in the Range Log panel</li>
+      </ol>
 
-          <h4>Selecting Parameters</h4>
-          <ul>
-          <li> <b>Folder File Select</b> button selects folder to place the rendered file.</li>
-          <li> <b>Name</b> entry widget provides means to set the name of the output file.</li>
-          <li> Use <b>Encoding Format</b> and untitled <b>Quality</b> drop down menus make to select the type of file to be rendered.</li>
-          </ul>
 
-          <h4>Rendering output</h4>
-          <ol>
-          <li>Press <b>Render</b> Button to begin rendering.</li>
-          <li>A Render Window will open displaying information on file path of render file, estimated time left, render time and a Progress bar widget.</li>
-          <li>After rendering is complete, Render Window will close automatically.</li>
-          </ol>
+      <h3>
+        <a name="_Adding_Range_Log_items_to_Timeline"> Adding Range Log items to Timeline</a>
+      </h3>
+      <h4>
+        <a name="With_buttons">With buttons</a>
+      </h4>
+      <ul>
+        <li> Press 'Append displayed..." -button on the bottom right corner to append all Items as Clips on active Track</li>
+        <li> Press 'Insert selected..." -button next to bottom right corner button to insert all selected Items on active track
+          at nearest cut from the currently displayed Timeline position</li>
+      </ul>
+      <h4>
+        <a name="Drag&#39;n&#39;Drop_into_Timeline">Drag'n'Drop into Timeline</a>
+      </h4>
+      <ul>
+        <li> Select a Range Log item and drag it into the desired position on Timeline</li>
+      </ul>
 
-        </div>
-      
-      
+      <h3>
+        <a name="Managing_Range_Log_Items">Managing Range Log Items</a>
+      </h3>
+      <ul>
+        <li> Use top row drop down menu to select the displayed Items Group</li>
+        <li> Use the top left corner button drop down menu to create, rename and delete Items Groups</li>
+      </ul>
+
+  </div>
+
+  <!-- End of Range Log -->
+
+  <!-- Beinging of Proxy Editing -->
+
+  <div class="container" id="Proxy editing">
+    <p>
+      Proxy editing is a method of editing in which original media clips are presented on timeline by proxy clips.
+
+    </p>
+
+    <h3>
+      <a name="Rationale">Rationale</a>
+    </h3>
+    <p>
+      Proxy clips used in proxy editing usually have smaller data rate and less CPU intensive decoding. There are two main reasons
+      to use proxy editing:
+    </p>
+    <ul>
+      <li> Original media from which the program is edited makes too high demands for either disk bandwidth or CPU processing
+        power for decoding to enable responsive editing </li>
+      <li> Original is kept on network server, slow external disk or other media with restricted access and does not enable provide
+        responsive editing if accessed directly.</li>
+    </ul>
+
+
+
+    <h3>
+      <a name="Generic_Proxy_Editing_workflow">Generic Proxy Editing workflow</a>
+    </h3>
+
+    <p>
+      All proxy editing workflows have the same phases:
+    </p>
+    <ol>
+      <li> Render proxy media from original media </li>
+      <li> Replace original media with proxy media </li>
+      <li> Edit using proxy media </li>
+      <li> Replace proxy media with original media </li>
+      <li> Render final program using original media </li>
+    </ol>
+
+    <h3>
+      <a name="Flowblade_proxy_editing">Flowblade proxy editing</a>
+    </h3>
+    <ol>
+      <li> Creating Proxy Media</li>
+      <ol>
+        <li> Select
+          <b>Project-&gt;Proxy Manager</b> in menu and set proxy file settings in
+          <b>Proxy Encoding</b> area </li>
+        <li> Select Video Media files in
+          <b>'Media'</b> Panel</li>
+        <li> Press button with proxy file icon next Delete button in 'Media' Panel</li>
+        <li> If Project is already in
+          <b>'Using Proxy Media'</b> proxy mode, timeline clips with original media that had proxy media rendered to will be
+          replaced with proxy media immediately</li>
+      </ol>
+      <li>Converting to use Proxy media</li>
+      <ol>
+        <li> Select
+          <b>Project-&gt;Proxy Manager</b> to open Proxy Manager</li>
+        <li> Press
+          <b>Use Proxy Media</b> button</li>
+      </ol>
+      <li>Editing with proxy media</li>
+      <ol>
+        <li> Clips that use proxy media have a blue stripe indicating that status</li>
+        <li> A proxy editing indicator icon is displayed at left bottom corner</li>
+        <li> If new proxy media is rendered timeline clips using the original media in question will be replaced with proxy media
+          immediately
+        </li>
+        <li> Project can be saved normally and converted after load to use original media</li>
+      </ol>
+      <li>Converting to use Original Media</li>
+      <ol>
+        <li> Select
+          <b>Project-&gt;Proxy Manager</b> to open Proxy Manager</li>
+        <li> Press
+          <b>Use Original Media</b> button</li>
+      </ol>
+    </ol>
+    <h3>
+      <a name="Important_notes_about_Flowblade_proxy_editing">Important notes about Flowblade proxy editing</a>
+    </h3>
+    <div class="important">
+      <li>
+        <b>DESTROYING ANY MEDIA while doing proxy editing WILL PREVENT CONVERTING BACK TO USING ORIGINAL MEDIA</b>
+      </li>
+      <li>
+        <b>It is only possible to use all
+          <i>existing</i> proxy media and clips or all original media</b>. It is not possible to use only some of the created
+        proxy media.</li>
+
+    </div>
+    <div class="note">
+      <p>
+        Flowblade uses a programming techique that changes the paths used by media items and clips to point either to hidden proxy
+        media or original media.
+      </p>
+      <p>
+        Changing from one to another is implemented by writing a hidden temporary project file to disk and replacing paths when project
+        is read back. Because of this any missing original media makes conversion back to using original media fail.
+      </p>
+    </div>
+
+    <!-- End of Proxy Editing -->
+
+    <!-- Beinging of Tools -->
+    <div class="container" id="Tools">
+      <h1>Tools</h1>
+      <p>
+        Flowblade provides standalone tools for important functionality that cannot be logically or conveniently presented via top
+        left panels or the timeline.
+      </p>
+      <h3>
+        <a name="_Titler_"> Titler </a>
+      </h3>
+      <p>Features:</p>
+      <ul>
+        <li> Add and remove layers in Layers area</li>
+        <li> Edit layer properties and text in Active Layer area</li>
+        <li> Set text position by dragging the active layer around in the view editor</li>
+        <li> Set background image from Timeline to position texts appropriately by dragging frame pointer in the Position Bar</li>
+        <li> Load and Save layers data in Layers Area</li>
+      </ul>
+      <h3>
+        <a name="_Audio_Mixer_"> Audio Mixer </a>
+      </h3>
+      <p>Features:</p>
+      <ul>
+        <li> Monitor audio levels on VU meters during playback</li>
+        <li> Use sliders to set volume for tracks or Master Out</li>
+        <li> Click
+          <b>Pan</b> button to activate pannig slider and use it to pan audio </li>
+      </ul>
+      <h3>
+        <a name="_Media_Relinker_"> Media Relinker </a>
+      </h3>
+      <p>
+        Media Relinker is a standalone application running in its own process and does not affect the project that is open in Flowblade
+      </p>
+      <ol>
+        <li> Start by pressing
+          <b>Load Project For Relinking</b> button and select the project you wish to relink.</li>
+        <li> Select the media file you wish to replace with some other media file. Press
+          <b>Set File Relink Path</b> button or press
+          <b>Right Mouse</b> on item to start selecting the new file. Clips and wipes in the project are linked to this new
+          media file. </li>
+        <li> Use drop down menu at bottom left to display either missing or found media files</li>
+        <li> Press
+          <b>Save Relinked Project As...</b> button to save the relinked version of the project</li>
+        <li> Open the relinked project in Flowblade and continue working with it</li>
+        <li> Media Relinker runs in its own process and does not share state or data with the running application.</li>
+        <li> When relinking a project you have open in Flowblade at the same time make sure that do not overwrite the relinked
+          version of project when saving the project you have open in Flowblade</li>
+      </ol>
+
+      <h3>
+        <a name="_G&#39;Mic_Effects"> G'Mic Effects</a>
+      </h3>
+      <p>
+        G'MIC is a full-featured open-source framework for image processing.
+      </p>
+      <p>
+        Flowblade G'MIC tool presents user with a selection of commads that can be used to achieve complex filtering of video clips.</p>
+      <p>
+        <b>NOTE: If a command is not present in the system then the corresponding filtering selection will not work.</b>
+      </p>
+      <p>
+        Commands are mostly embedded in the
+        <b>/usr/bin/gmic</b> binary itself, so to have access to more commands you will mostly need to upgrade the binary in
+        your system.
+      </p>
+      <p>
+        It is however possible to add and use custom commands and use them for video filtering,
+        <a href="http://gmic.eu/reference.shtml#section11">more info here.</a>
+      </p>
+
+      <h4>
+        <a name="Loading_clip_and_rendering_previews">Loading clip and rendering previews</a>
+      </h4>
+      <ul>
+        <li> Start by pressing
+          <b>Load Clip</b> button, and select the video clip you wish to apply filtering on.</li>
+        <li> Press on the downward triangle on top of the
+          <b>Script Edit Area</b> on the left middle of the window to select a gmic command.</li>
+        <li> You can alter the values given to commands in the
+          <b>Script Edit Area</b>.</li>
+        <li> Press the
+          <b>Preview</b> button on the right middle to view the filtered image.</li>
+        <li> After rendering preview the area below
+          <b>Script Edit Area</b> shows text output from gmic with possible error messages.</li>
+        <li> You can apply multiple commands by checking
+          <b>Add to script</b> checkbox.</li>
+      </ul>
+      <h4>
+        <a name="Rendering_Output">Rendering Output</a>
+      </h4>
+      <ul>
+        <li> To render a frame sequence you will need to set
+          <b>Mark In and Mark out points</b> and
+          <b>select a folder</b> to hold the rendered frame sequence.</li>
+        <li> To render a video file from the filtered frame sequence, check
+          <b>Encode video</b> checkbox and press the
+          <b>Encoding Settings</b> button to set properties of the rendered video file.</li>
+      </ul>
+    </div>
+
+    <!-- End of tools -->
+
+    <!-- Being of Rendering -->
+    <div class="container" id="Rendering">
+      <h1>Rendering</h1>
+      <p>
+        In Flowblade there are two ways to render output:
+      </p>
+      <ul>
+        <li>
+          <b>Render Panel</b> in the top left notebook in the main window.</li>
+        <li>
+          <b>Batch Render Queue</b> application that can launched from Render menu.</li>
+      </ul>
+
+      <p>
+        Almost all the encodings available for FLOSS applications can used in Flowblade.
+      </p>
+
+      <h3>
+        <a name="Rendering_Panel">Rendering Panel</a>
+      </h3>
+
+      <h4>
+        <a name="Widgets">Widgets</a>
+      </h4>
+      <h5>
+        <b>Folder</b> select button</h5>
+      <div class="r-widget">Select folder to place the output file in.</div>
+      <h5>
+        <b>Name</b> entry widget</h5>
+      <div class="r-widget">Set the name of the output file.</div>
+      <h5>
+        <b>Type</b> drop down menu</h5>
+      <div class="r-widget">Select between rendering with user defined parameter or use preset render params and file types.</div>
+      <h5>
+        <b>Presets</b> drop down menu</h5>
+      <div class="r-widget">Select preset rendering params and file type.</div>
+      <h5>
+        <b>Use Project Profile</b> check box</h5>
+      <div class="r-widget">Uncheck to select some other then project profile to used for rendered video.</div>
+      <h5>
+        <b>Profile</b> drop down menu</h5>
+      <div class="r-widget">Select project profile for rendering</div>
+      <h5>
+        <b>Encoding / File Type</b> drop down menu</h5>
+      <div class="r-widget">Select encoding and container format for rendering.</div>
+      <h5>
+        <b>Bitrate</b> drop down menu</h5>
+      <div class="r-widget">Select bitrate for rendering.</div>
+      <h5>
+        <b>Render Using Args</b> check box</h5>
+      <div class="r-widget">Rendering using arguments set in text edit area below.</div>
+      <h5>
+        <b>Args</b> text area</h5>
+      <div class="r-widget">Set arguments for rendering.</div>
+      <h5>
+        <b>Load Selection</b> button</h5>
+      <div class="r-widget">Load rendering arguments defined in left panel into args text area.</div>
+      <h5>
+        <b>Ext</b> entry widget drop down menu</h5>
+      <div class="r-widget">Set file extension for args rendered file.</div>
+      <h5>
+        <b>Open File In Bin</b> check box</h5>
+      <div class="r-widget">Open the rendererd file as media item in current bin.</div>
+      <h5>
+        <b>Render Range</b> drop down menu</h5>
+      <div class="r-widget">Select between rending the complete program or the marked range.</div>
+      <h5>
+        <b>Render</b> button</h5>
+      <div class="r-widget">Renders timeline into a file.</div>
+
+
+      <h4>
+        <a name="Rendering_output">Rendering output</a>
+      </h4>
+      <ol>
+        <li> Press
+          <b>Render</b> Button to begin rendering.</li>
+        <li> A Render Window will open displaying information on file path of render file, estimated time left, render time and
+          a Progress bar widget.</li>
+        <li> After rendering is complete, Render Window will close automatically.</li>
+      </ol>
+
+      <h3>
+        <a name="_Batch_Render_Queue_"> Batch Render Queue </a>
+      </h3>
+
+      <p>
+        Flowblade offers a dedicated Batch Render Queue application. Batch Render Queue is a separate application to Flowblade and
+        runs on different process, so it is possible to close Flowblade without affecting ongoing renders.
+      </p>
+      <p>
+        Render queue is a persistent data structure of render items on disk. Each item consists of a Project file and saved render
+        parameters. Users can add render items to render queue and then render the whole queue without any further user input.
+      </p>
+
+      <h4>
+        <a name="Adding_Items_to_Batch_Render_Queue">Adding Items to Batch Render Queue</a>
+      </h4>
+      <ul>
+        <li> Press
+          <b>To Queue</b> button in
+          <b>Render</b> tab.</li>
+        <li> Select
+          <b>Render-&gt;Add to Batch Render Queue...</b> item from menu</li>
+      </ul>
+
+      <h4>
+        <a name="Using_Batch_Render_Queue_application">Using Batch Render Queue application</a>
+      </h4>
+      <ol>
+        <li> Open Batch Render Queue application by selecting
+          <b>Render-&gt;Batch Render Queue</b> from menu.</li>
+        <li> Press
+          <b>Reload Queue</b> button to display render items that have been added to render queue since it was opened.</li>
+        <li> Use
+          <b>Delete Selected</b> and
+          <b>Delete Finished</b> buttons to remove items from queue.</li>
+        <li> Use checkbox widget in the Render column to select which items will be rendered.</li>
+        <li> Press
+          <b>Render</b> button to begin rendering.</li>
+      </ol>
+      <p>
+        UI actions:
+      </p>
+      <ul>
+        <li>
+          <b>Right Mouse Click</b> render item to show render item context menu.</li>
+        <li>
+          <b>Save Item Project As...</b> allows th user to save the Project file of the render item into same other location</li>
+        <li>
+          <b>Render Properties</b> displays the render properties that were set when the item was added to render queue.</li>
+        <li>
+          <b>Delete</b> deletes the item from queue</li>
+      </ul>
+      <h3>
+        <a name="Rendering_behind_the_scenes:_MLT_and_libavformat(FFMpeg)">Rendering behind the scenes: MLT and libavformat(FFMpeg)</a>
+      </h3>
+      <p>
+        Flowblade Movie Editor is a Python application interfacing to MLT multitrack media framework. Other video editing applications
+        build on top of MLT include OpenShot and Kdenlive.
+      </p>
+      <p>
+        MLT uses C-library libavformat(FFMpeg) to render output files, and rendering is defined by setting FFMpeg encoding parameters.
+        These parameters are delivered from Flowblade Movie Editor to MLT by creating a "avformat" Consumer object for a
+        given Render Profile, and then setting its Rendering Args. These latter arguments are exactly the same which are
+        used when using FFmpeg to encode video files.
+      </p>
+      <p>
+        Rendering arguments for encoding different types of video files are pre-packed and can be selected using Encocing / Format
+        and Quality Drop Down Menus. Arguments can be refined by checking Render with args Checkbox and changing args values
+        and/or adding/removing args.
+      </p>
+      <p>
+        Any kind of video files supported by the installed version of MLT can be encoded by creating a user defined Render Profile
+        and setting its Rendering Args. Google for FFMpeg encoding to find Args combinations for different video files.
+      </p>
+      <p>
+        Search web for information on encoding files with FFMpeg to get examples of Rendering Args that can be used.
+      </p>
+      <h3>
+        <a name="Flowblade_rendering_pipeline">Flowblade rendering pipeline</a>
+      </h3>
+
+      <img src="src/encoding.png">
+    </div>
+
+    <!-- Being of Rendering -->
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
+
 </html>
