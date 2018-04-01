@@ -18,7 +18,7 @@ function clear_canvas(){
     ctx.fillRect(0,0,data.width,data.height);
 }
 
-function draw_bar(x,y,w,h,text){
+function draw_bar(x,y,w,h,text,times){
     var ctx = document.getElementById("diagram").getContext("2d");
 
     //text starts at x,0
@@ -33,6 +33,9 @@ function draw_bar(x,y,w,h,text){
     }
 
     ctx.fillText(text,x,data.height-data.font_size,w);
+    ctx.fillText(times,x+(w-ctx.measureText(times).width)/2,
+        data.height-h-data.font_size-20,w); /* we can make that a static 20 since
+                                            it will work with most of popular font sizes */
     ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];
     ctx.fillRect(x,data.height-y,w,-h);
 }
@@ -71,7 +74,7 @@ function draw_grid() {
     var w = data.width/(1.1*data.diagram_items.size+0.1);
     for (var [key, value] of data.diagram_items.entries()) {
         draw_bar(x*index+0.05*x, data.lower_gap, w,
-            0.90*data.height*value / (max_repetitions),key);
+            0.90*data.height*value / (max_repetitions),key,value);
 
         /* we print only within 90% of canvas height for aesthetics */
 
