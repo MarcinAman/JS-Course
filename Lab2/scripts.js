@@ -3,14 +3,41 @@ data = {
     width:600,
     height:600,
     font_size:15,
-    lower_gap:30,
+    lower_gap:20,
 };
 
 data.diagram_items = new Map();
 
-var colors = ['red', 'green', 'blue', 'orange', 'yellow','grey','pink'];
+var colors = ['red', 'green', 'blue', 'orange', 'yellow','grey','pink','purple'];
 
-document.getElementById("collect_data").addEventListener('click',collect_data);
+document.getElementById("collect_data").addEventListener('click',function(){
+    document.getElementById("textarea").value.split("\n").forEach(function(element){
+
+        var element_contains = element.split(":");
+        var word = element_contains[0].substr(element_contains[0].indexOf(" "),element_contains[0].length);
+
+        if(element.startsWith("+")){
+            var current_items = data.diagram_items.get(word);
+            var total_list = [];
+            if(data.diagram_items.has(word)){
+                total_list = current_items.concat(element_contains[1].split(" "));
+            }
+            else{
+                total_list = element_contains[1].split(" ");
+            }
+            data.diagram_items.set(word,total_list.filter(a=>a!==""));
+        }
+        else if(element.startsWith("-")){
+            data.diagram_items.delete(word);
+        }
+        else{
+            data.diagram_items.set(word,element_contains[1].split(" ").filter(a=>a!==""));
+        }
+
+        draw_graph(0);
+    });
+
+});
 
 function clear_canvas(){
     var ctx = document.getElementById("diagram").getContext("2d");
@@ -18,69 +45,59 @@ function clear_canvas(){
     ctx.fillRect(0,0,data.width,data.height);
 }
 
-function draw_bar(x,y,w,h,text,times){
+function draw_bar(x,y,w,h){
     var ctx = document.getElementById("diagram").getContext("2d");
-
-    //text starts at x,0
-    ctx.fillStyle = "black";
-    ctx.font = data.font_size+"px Arial";
-
-    var text_len_in_pixels = ctx.measureText(text).width;
-
-    if(text_len_in_pixels>w){
-        var last_index = Math.floor(text.length*w/text_len_in_pixels);
-        text = text.substr(0,last_index)+".";
-    }
-
-    ctx.fillText(text,x,data.height-data.font_size,w);
-    ctx.fillText(times,x+(w-ctx.measureText(times).width)/2,
-        data.height-h-data.font_size-20,w); /* we can make that a static 20 since
-                                            it will work with most of popular font sizes */
-    ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];
-    ctx.fillRect(x,data.height-y,w,-h);
+    ctx.fillStyle = colors[Math.random()%colors.length];
+    ctx.fillRect(x,y+w,w,h);
+    console.log("x: "+x+" y: "+y+w+" h:"+h+" w: "+w);
 }
 
-function collect_data(){
-    clear_canvas();
+/*
+function compare(a,b){
+    if(a && b){
+        return a[1].length > b[1].length;
+    }
+    return false;
+}
 
-    document.getElementById("textarea").value.split(" ").filter(a=>a!=='').forEach(function (value) {
-        var hash_value = 0;
-        if(data.diagram_items.has(value)){
-            hash_value = data.diagram_items.get(value);
-            data.diagram_items.delete(value);
-        }
-        data.diagram_items.set(value,hash_value+1);
+function get_top_array(){
+    var array = [];
+    data.diagram_items.forEach(a=>array.push(a));
+
+    return array.sort(compare);
+}
+*/
+
+function get_max_value(){
+    var max = -1;
+
+    data.diagram_items.forEach(function (element) {
+       if(element[0].length>max){
+           max = element[0].length;
+       }
     });
 
-    data.font_size = Math.min(data.width/20,data.font_size);
-
-    data.lower_gap = Math.min(data.height/10,data.font_size*2);
-    draw_grid();
-}
-
-function get_max_repetitions(){
-    var max = 0;
-    for(var value of data.diagram_items.values()){
-        if(max<value) max = value;
-    }
     return max;
 }
 
+function draw_graph(N){
 
-function draw_grid() {
-    var x = (data.width / data.diagram_items.size);
-    var index = 0;
-    var max_repetitions = get_max_repetitions();
-    var w = data.width/(1.1*data.diagram_items.size+0.1);
-    for (var [key, value] of data.diagram_items.entries()) {
-        draw_bar(x*index+0.05*x, data.lower_gap, w,
-            0.90*data.height*value / (max_repetitions),key,value);
+    console.log(data.diagram_items);
 
-        /* we print only within 90% of canvas height for aesthetics */
+    clear_canvas();
 
-        index++;
-    }
+    var coord_x = 30;
+    var coord_y = 10;
+
+    var h = (data.width - coord_x)*0.9/get_max_value();
+    var w = (data.height - coord_y)/data.diagram_items.size;
+    console.log("w="+w);
+    console.log("Max val: "+get_max_value());
+    data.diagram_items.forEach(function(element){
+        draw_bar(coord_x,coord_y,w*element[0].length,h);
+        coord_y += h;
+        coord_y += data.lower_gap;
+    });
 }
-
 
 
