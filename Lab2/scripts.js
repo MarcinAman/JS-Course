@@ -3,12 +3,11 @@ data = {
     width:600,
     height:600,
     font_size:15,
-    lower_gap:20,
+    left_gap:30,
+    between_gap: 10
 };
 
 data.diagram_items = new Map();
-
-var colors = ['red', 'green', 'blue', 'orange', 'yellow','grey','pink','purple'];
 
 document.getElementById("collect_data").addEventListener('click',function(){
     document.getElementById("textarea").value.split("\n").forEach(function(element){
@@ -33,11 +32,37 @@ document.getElementById("collect_data").addEventListener('click',function(){
         else{
             data.diagram_items.set(word,element_contains[1].split(" ").filter(a=>a!==""));
         }
-
-        draw_graph(0);
     });
 
+    draw_graph(parseInt(document.getElementById("BarAmount").value));
 });
+
+function compare(a,b){
+    if(a && b){
+        return a[1].length < b[1].length;
+    }
+    return false;
+}
+
+function get_top_array(){
+    var array = [];
+
+    for(const entry of data.diagram_items){
+        /*https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/@@iterator */
+        array.push(entry);
+    }
+
+    return array.sort(compare);
+}
+
+/*Drawing part: */
+
+function getRndColor() {
+    var r = 255*Math.random()|0,
+        g = 255*Math.random()|0,
+        b = 255*Math.random()|0;
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
 
 function clear_canvas(){
     var ctx = document.getElementById("diagram").getContext("2d");
@@ -45,59 +70,70 @@ function clear_canvas(){
     ctx.fillRect(0,0,data.width,data.height);
 }
 
-function draw_bar(x,y,w,h){
+function draw_bar(x,y,w,h,text,number){
+    /* drawing rotated text:*/
     var ctx = document.getElementById("diagram").getContext("2d");
-    ctx.fillStyle = colors[Math.random()%colors.length];
-    ctx.fillRect(x,y+w,w,h);
-    console.log("x: "+x+" y: "+y+w+" h:"+h+" w: "+w);
-}
 
-/*
-function compare(a,b){
-    if(a && b){
-        return a[1].length > b[1].length;
+    /* scale text */
+    console.log(ctx.measureText(text).width+" :"+text+" h: "+h);
+
+    while(ctx.measureText(text).width>=h){
+        text = text.substr(0,text.length-2);
     }
-    return false;
-}
 
-function get_top_array(){
-    var array = [];
-    data.diagram_items.forEach(a=>array.push(a));
+    console.log(ctx.measureText(text).width);
 
-    return array.sort(compare);
-}
-*/
+    /*draw and rotate */
 
-function get_max_value(){
-    var max = -1;
+    ctx.fillStyle = "black";
+    ctx.font = data.font_size+ "px Arial";
 
-    data.diagram_items.forEach(function (element) {
-       if(element[0].length>max){
-           max = element[0].length;
-       }
-    });
+    ctx.save();
 
-    return max;
+    ctx.translate(0,0);
+    ctx.rotate(Math.PI/2);
+    ctx.fillText(text,y+(h-ctx.measureText(text).width)/2,-(data.left_gap-data.font_size)/2);
+
+    ctx.restore();
+
+    /* draw bar: */
+    ctx.save();
+
+    ctx.fillStyle = getRndColor();
+    ctx.fillRect(x,y,w,h);
+
+    ctx.restore();
+
+    /* draw number */
+
+    ctx.fillText(number,x+w+5,y+h/2);
+
 }
 
 function draw_graph(N){
 
-    console.log(data.diagram_items);
-
     clear_canvas();
 
-    var coord_x = 30;
-    var coord_y = 10;
+    /* Starting parameters: */
+    var coord_x = data.left_gap;
+    var coord_y = data.between_gap;
+    var times = Math.min(N,data.diagram_items.size);
 
-    var h = (data.width - coord_x)*0.9/get_max_value();
-    var w = (data.height - coord_y)/data.diagram_items.size;
-    console.log("w="+w);
-    console.log("Max val: "+get_max_value());
-    data.diagram_items.forEach(function(element){
-        draw_bar(coord_x,coord_y,w*element[0].length,h);
-        coord_y += h;
-        coord_y += data.lower_gap;
-    });
+    var h = (data.height - coord_y)/times;
+
+    var array = get_top_array();
+
+    for(var i =0;i<times;i++){
+
+        draw_bar(   coord_x,
+                    coord_y+i*h,
+                    0.9*(data.width-coord_x)*array[i][1].length/array[0][1].length,
+                    h-10,
+                    array[i][0],
+                    array[i][1].length
+                );
+    }
+
 }
 
 
