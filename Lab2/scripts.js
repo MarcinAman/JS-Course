@@ -37,6 +37,10 @@ document.getElementById("collect_data").addEventListener('click',function(){
     draw_graph(parseInt(document.getElementById("BarAmount").value));
 });
 
+document.getElementById("refresh_diagram").addEventListener('click',function(){
+  draw_graph(parseInt(document.getElementById("BarAmount").value));
+});
+
 function compare(a,b){
     if(a && b){
         return a[1].length < b[1].length;
@@ -75,13 +79,10 @@ function draw_bar(x,y,w,h,text,number){
     var ctx = document.getElementById("diagram").getContext("2d");
 
     /* scale text */
-    console.log(ctx.measureText(text).width+" :"+text+" h: "+h);
 
     while(ctx.measureText(text).width>=h){
         text = text.substr(0,text.length-2);
     }
-
-    console.log(ctx.measureText(text).width);
 
     /*draw and rotate */
 
@@ -135,5 +136,3 @@ function draw_graph(N){
     }
 
 }
-
-
