@@ -14,12 +14,12 @@ var start_timeout;
 
 document.getElementById("StartButton").addEventListener('click',function () {
     start_interval = new Date().getTime();
-    data.intervalID = window.setInterval(funInterval,data.time_default*1000);
+    data.intervalID = window.setInterval(funInterval,data.time_default*100);
     /*
         czasy sa mniej wiecej takie same z dokladnoscia do +/- 1 ms
     */
     start_timeout = new Date().getTime();
-    data.timeoutID = window.setTimeout(funTimeout,data.time_default*1000);
+    data.timeoutID = window.setTimeout(funTimeout,data.time_default*100);
     start_request = new Date().getTime();
     data.requestID = window.requestAnimationFrame(funRequest);
 });
@@ -42,7 +42,7 @@ function funTimeout(){
     data.timeFunTimeout = end-start_timeout;
     console.log("funTimeout: "+data.timeFunTimeout);
     start_timeout = new Date().getTime();
-    data.timeoutID = window.setTimeout(funTimeout,data.time_default*1000);
+    data.timeoutID = window.setTimeout(funTimeout,data.time_default*100);
 }
 
 function funRequest(){
