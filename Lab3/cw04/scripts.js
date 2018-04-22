@@ -1,4 +1,4 @@
-/* #TODO mouse functionality */
+/*ps: not tested */
 
 const Rectangle = class {
 
@@ -123,6 +123,7 @@ const Grid = class {
 };
 
 const Ball = class{
+
     constructor(x,y,r,v_x,v_y){
         this.r = r;
         this.x = x;
@@ -135,6 +136,21 @@ const Ball = class{
         const ctx = document.getElementById("game-canvas").getContext("2d");
         ctx.fillStyle = "#000";
         ctx.beginPath();
+
+        if(this.x<=0){
+            this.x = (600-this.r*2);
+        }
+        if(this.x>=600){
+            this.x = this.r*2
+        }
+
+        if(this.y<=0){
+            this.y = (600-this.r*2)
+        }
+        if(this.y>=600){
+            this.y = this.r*2;
+        }
+
         ctx.arc(this.x,this.y,this.r,0,Math.PI*2,false);
         ctx.fill();
     }
@@ -244,7 +260,40 @@ const Game = {
     currentPlayer: -1,
 };
 
-const setupGame = (N,velocity_x,velocity_y) => {
+const mouseMoveHandler = (e) => {
+  const relativeX = e.clientX - document.getElementById("game-canvas").offsetLeft;
+  const relativeY = e.clientY - document.getElementById("game-canvas").offsetTop;
+
+  let cond = 0;
+  if(relativeX>0 && relativeX<600){
+    Game.ball.x += Game.ball.v_x*2*((relativeX-300)/600);
+    cond = 1;
+  }
+  if(relativeY>0 && relativeY<600){
+    Game.ball.y += Game.ball.v_y*2*((relativeY-300)/600);
+    cond = 1;
+  }
+
+  if(cond){
+      Game.grid.clearGrid();
+      Game.grid.grid.reduce((e,a) => e.concat(a),[]).forEach(
+          (element) => {
+              if(element.doesInterfereWithBall(Game.ball) && element.value>=Game.grid.delimeter){
+                  element.value = -1;
+                  Game.points += element.timer;
+
+                  Game.grid.checkGamePoints();
+              }
+          });
+      Game.grid.drawWholeGrid();
+      Game.ball.renderBall();
+  }
+};
+
+const setupGame = (N,velocity_x,velocity_y,mouse) => {
+
+    if(mouse) document.addEventListener('mousemove',mouseMoveHandler,false);
+
     Game.grid = new Grid(600,600,N);
     Game.ball = new Ball(300,300,10,velocity_x,velocity_y);
 
@@ -297,10 +346,12 @@ const newGame = () => {
         Game.currentPlayer = new Player(
             document.getElementsByClassName("input")[0].value
             );
+
         setupGame(
             parseInt(document.getElementsByClassName("input")[1].value),
             parseFloat(document.getElementsByClassName("input")[2].value),
-            parseFloat(document.getElementsByClassName("input")[2].value)
+            parseFloat(document.getElementsByClassName("input")[2].value),
+            document.getElementsByClassName("input")[3].checked
         );
     }
 };
