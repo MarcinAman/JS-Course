@@ -83,19 +83,21 @@ const Grid = class {
     }
 
     renderRandomPoint(free){
-        console.log(free);
-        for(let a in Array.from({length: free}, (e,i) => i)) {
-
-            let randX = Math.floor(Math.random()*this.fields);
-            let randY = Math.floor(Math.random()*this.fields);
-
-            while(this.grid[randX][randY].value >= this.delimeter && this.grid[randX][randY].timer > 0){
-                randX = Math.floor(Math.random()*this.fields);
-                randY = Math.floor(Math.random()*this.fields);
+        for(let x in Array.from({length: free},(m,n)=>n)){
+            let rand = Math.floor(Math.random()*free);
+            let iterator = 0;
+            for(let a in Array.from({length: this.fields},(e,i)=> i)){
+                for(let b in Array.from({length: this.fields},(j,k)=>k)){
+                    if(this.grid[a][b].value >= this.delimeter && this.grid[a][b].timer>=-5){
+                        iterator++;
+                    }
+                    else if(rand===iterator){
+                        this.grid[a][b].value = this.delimeter+1;
+                        this.grid[a][b].timer = 20;
+                        rand = -2;
+                    }
+                }
             }
-
-            this.grid[randX][randY].value = this.delimeter+1;
-            this.grid[randX][randY].timer = 20;
         }
     }
 
@@ -103,7 +105,7 @@ const Grid = class {
         const renderedFields = this.getRenderedFields();
 
         if(renderedFields<= Math.sqrt(this.fields)){
-            this.renderRandomPoint(Math.pow(this.fields,2) - renderedFields);
+            this.renderRandomPoint(this.fields*this.fields - renderedFields);
         }
     }
 
@@ -112,9 +114,9 @@ const Grid = class {
         return this.grid.reduce(
             (prev,current) => prev.concat(current),[]).reduce((e,i) => { /* prob not working */
                 if(i.value >= this.delimeter && i.timer >= 0)
-                    return 1;
+                    return 1+e;
                 else{
-                    return 0;
+                    return e;
                 }
                 },0);
     }
@@ -254,7 +256,13 @@ const setupGame = (N,velocity_x,velocity_y) => {
     Game.interval_id = window.setInterval( () => {
         Game.grid.grid.reduce((e,a)=>e.concat(a),[]).forEach(
             (element) => {
-                element.timer -=1;
+                if(element.value >= Game.grid.delimeter){
+                    element.timer -=1;
+                }
+                if(element.timer < -5) {
+                    element.value = -1;
+                    element.timer = 20;
+                }
             }
         );
 
