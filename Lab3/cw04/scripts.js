@@ -1,5 +1,3 @@
-/*ps: not tested */
-
 const Rectangle = class {
 
     constructor(x,y,value,r){
@@ -104,7 +102,7 @@ const Grid = class {
     checkGamePoints(){
         const renderedFields = this.getRenderedFields();
 
-        if(renderedFields<= Math.sqrt(this.fields)){
+        if(renderedFields <= this.fields){
             this.renderRandomPoint(this.fields*this.fields - renderedFields);
         }
     }
@@ -184,10 +182,9 @@ const Ball = class{
                 if(element.doesInterfereWithBall(Game.ball) && element.value>=Game.grid.delimeter){
                     element.value = -1;
                     Game.points += element.timer;
-
-                    Game.grid.checkGamePoints();
                 }
         });
+        Game.grid.checkGamePoints();
         Game.grid.drawWholeGrid();
         this.renderBall();
     }
@@ -216,7 +213,7 @@ const Player = class {
     }
 
     displayPoints(){
-        this.points.reduce( (e,i) => {
+        return this.points.reduce( (e,i) => {
             return `${e} ${i}`;
         },'')
     }
@@ -249,6 +246,7 @@ const keyDownHandler = (e) => {
 
 const updatePoints = () => {
     document.getElementsByClassName("points")[0].innerHTML = Game.points;
+    document.getElementsByClassName("time")[0].innerHTML = 60-Game.time;
 };
 
 const Game = {
@@ -258,6 +256,7 @@ const Game = {
     interval_id: 0,
     points: 0,
     currentPlayer: -1,
+    time: 0
 };
 
 const mouseMoveHandler = (e) => {
@@ -281,9 +280,7 @@ const mouseMoveHandler = (e) => {
               if(element.doesInterfereWithBall(Game.ball) && element.value>=Game.grid.delimeter){
                   element.value = -1;
                   Game.points += element.timer;
-
-                  Game.grid.checkGamePoints();
-              }
+                  }
           });
       Game.grid.drawWholeGrid();
       Game.ball.renderBall();
@@ -296,6 +293,7 @@ const setupGame = (N,velocity_x,velocity_y,mouse) => {
 
     Game.grid = new Grid(600,600,N);
     Game.ball = new Ball(300,300,10,velocity_x,velocity_y);
+    Game.time = 0;
 
     setupButtons();
     Game.grid.drawWholeGrid();
@@ -317,16 +315,16 @@ const setupGame = (N,velocity_x,velocity_y,mouse) => {
 
         Game.grid.drawWholeGrid();
         Game.ball.renderBall();
+        Game.time +=1;
         updatePoints();
+        if(Game.time>=60){
+            clearInterval(Game.interval_id);
+        }
     },1000)
 };
 
 const renderResultTable = () => {
-    document.getElementsByClassName("fixed-table-body").innerHTML +=
-        `<tr>
-            <td>${Game.currentPlayer.name}</td>
-            <td>${Game.currentPlayer.displayPoints()}</td>
-        </tr>`
+    document.getElementById("ranking").innerHTML += (Game.currentPlayer.name +": "+Game.currentPlayer.displayPoints()+"<br>");
 };
 
 const renderNextRound = () => {
@@ -342,18 +340,16 @@ const renderNextRound = () => {
 };
 
 const newGame = () => {
-    if(Game.grid === -1){
-        Game.currentPlayer = new Player(
-            document.getElementsByClassName("input")[0].value
-            );
+    Game.currentPlayer = new Player(
+        document.getElementsByClassName("input")[0].value
+    );
 
-        setupGame(
-            parseInt(document.getElementsByClassName("input")[1].value),
-            parseFloat(document.getElementsByClassName("input")[2].value),
-            parseFloat(document.getElementsByClassName("input")[2].value),
-            document.getElementsByClassName("input")[3].checked
-        );
-    }
+    setupGame(
+        parseInt(document.getElementsByClassName("input")[1].value),
+        parseFloat(document.getElementsByClassName("input")[2].value),
+        parseFloat(document.getElementsByClassName("input")[2].value),
+        document.getElementsByClassName("input")[3].checked
+    );
 };
 
 

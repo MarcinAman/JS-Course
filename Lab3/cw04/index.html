@@ -6,6 +6,11 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+    1. To add new player fill the fields and click Accept. <br>
+    2. If your time has passed just click "Next Round" <br>
+    3. If You want to add new player just finish 3 of your rounds and click Accept <br>
+    4. I suggest picking item number within 4-8 since next levels will have 2 and 4 times more elements <br>
+    5. If you are stuck and dont have anything to collect just move your ball and new ones will appear <br> <br>
     <canvas id="game-canvas"
             width="600"
             height="600">
@@ -14,25 +19,23 @@
     <br>
     Current result =
     <span class = "points">0</span>
+    Time:
+    <span class = "time">0</span>
     <br>
     <input type="text" class = "input" placeholder="Select your name">
     <input type="number" class = "input" placeholder="Squares">
     <input type="number" class = "input" placeholder="Velocity">
     <br>
+    Pick 1 input:
     <input type="radio" value="Mouse" class="input">Mouse
     <input type="radio" value="Keyboard" class="input">Keyboard
     <button onclick="newGame()">Accept</button> <button onclick="renderNextRound()">Next round</button>
     <br>
-    <thead class = "fixed-table-head">
-        <tr>
-            <th>Name</th>
-            <th>Points</th>
-        </tr>
-    </thead>
+    Rank:
+    <br>
+    <div id="ranking">
 
-    <tbody class = "fixed-table-body">
-
-    </tbody>
+    </div>
 
     <script src="scripts.js"></script>
 </body>
