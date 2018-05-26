@@ -50,8 +50,13 @@ class Teacher extends Component{
     this.state = {
       name: props.name,
       position: props.position,
-      students: props.students
+      students: props.students,
+      toChange: [],
+      view: 'summary'
     }
+
+    this.addToChange = this.addToChange.bind(this);
+    this.renderGradesToChange = this.renderGradesToChange.bind(this)
   }
 
   mapGrades(student){
@@ -60,22 +65,56 @@ class Teacher extends Component{
     )
   }
 
-  mapStudents(){
+  addToChange(element){
+    if(this.state.toChange.includes(element)){
+      this.setState((prevState)=>({
+          toChange: prevState.toChange.filter((e)=>e!==element)
+      }))
+    }
+    else{
+        this.setState((prevState)=>{
+            prevState.toChange.push(element)
+            return {toChange: prevState.toChange}
+        })
+    }
+  }
+
+  renderGradesToChange(e){
+    this.setState({view:'change'})
+  }
+
+  mapStudentsSummary(){
     return this.state.students.map(
-        (e)=> (<tr><td>{e.name}</td><td>{e.student_id}</td>{this.mapGrades(e)}</tr>)
+        (e)=> (<tr><td><input type="checkbox" onChange={(a)=>this.addToChange(e)}/></td><td>{e.name}</td><td>{e.student_id}</td>{this.mapGrades(e)}</tr>)
     )
   }
 
-  mapHeaders(){
-      return (<thead><th>Name</th><th>Student's id:</th></thead>)
+  mapHeadersSummary(){
+      return (<thead><th>Change</th><th>Name</th><th>Student's id:</th></thead>)
   }
 
 
   render(){
-    return(<table width="100%">
-        {this.mapHeaders()}
-        {this.mapStudents()}
-        </table>)
+    if(this.state.view === 'summary'){
+        return(<div><table width="100%">
+            {this.mapHeadersSummary()}
+            {this.mapStudentsSummary()}
+        </table>
+            <input type="button" onClick={this.renderGradesToChange}/>
+        </div>)
+    }
+    else{
+      return(<div>
+        <table width="100%">
+            {<thead>Name</thead>}
+            {this.state.toChange.map(
+                (e) => (<tr>{e.grades.map(
+                    (a) => <td>{a.subject}:<input type="number" value={a.grade}/></td>
+                    )}</tr>)
+            )}
+        </table>
+      </div>)
+    }
   }
 
 }
