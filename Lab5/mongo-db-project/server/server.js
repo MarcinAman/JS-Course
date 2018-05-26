@@ -17,6 +17,12 @@ const subjectNames = ['Maths','Physics','PE','Art','IT']
 const connectionURL = 'mongodb://localhost:27017/University'
 const collectionName = 'InformationSystem'
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 const first_data = {
     name: "Jakob Bayer",
     position: "Academic Teacher",
@@ -35,35 +41,27 @@ app.use(express.static(__dirname + '/public'));
 
 //Adding first pile of data to database
 
-const updateData = (res,data) => {
-    MongoClient.connect(connectionURL,(err,db)=>{
+const updateData2 = (res,data,db) => {
+    const collection = db.collection('InformationSystem')
+    collection.insert(data,{w:1},(err,result) =>{
         if(err){
-            res.send('error')
+            db.collection('InformationSystem').drop()
+            updateData2(res,data,db)
         }
         else{
-            const db_object = db.db('University')
-            db_object.createCollection('InformationSystem',{w:1},(err,result)=>{
-                if(err){
-                    console.log(err)
-                }
-            })
-
-            const collection = db_object.collection('InformationSystem')
-            collection.insert(data,{w:1},(err,result) =>{
-                if(err){
-                    console.log(err)
-                }
-                else{
-                    res.send('ok')
-                }
-            })
-
+            res.send(JSON.stringify(data))
         }
     })
 }
 
 app.get('/', (req,res) => {
-    updateData(res,first_data)
+    MongoClient.connect(connectionURL,(err,db)=>{
+        if(err){
+            res.send(err)
+        }
+        const db_object = db.db('University')
+        updateData2(res,first_data,db_object)
+    })
 })
 
 app.get('/getTeacher*',(req,res)=>{
