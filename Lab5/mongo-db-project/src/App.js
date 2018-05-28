@@ -51,12 +51,24 @@ class Teacher extends Component{
       name: props.name,
       position: props.position,
       students: props.students,
+      updateProps: props.requestPropsChange,
       toChange: [],
-      view: 'summary'
+      view: 'summary',
+      baseurl: 'http://localhost:8080/',
+      random: props.rnd,
+      toChangeGrade: []
     }
 
     this.addToChange = this.addToChange.bind(this);
-    this.renderGradesToChange = this.renderGradesToChange.bind(this)
+    this.renderGradesToChange = this.renderGradesToChange.bind(this);
+    this.handleGradeChanging = this.handleGradeChanging.bind(this);
+    this.removeGrade = this.removeGrade.bind(this);
+    this.addGradesToAdd = this.addGradesToAdd.bind(this);
+    this.addStudentToAdd = this.addStudentToAdd.bind(this);
+    this.addGradeToAdd = this.addGradeToAdd.bind(this);
+    this.addSubjectToAdd = this.addSubjectToAdd.bind(this);
+    this.updateGradeOnClick = this.updateGradeOnClick.bind(this);
+    this.updateData = this.updateData.bind(this);
   }
 
   mapGrades(student){
@@ -79,13 +91,81 @@ class Teacher extends Component{
     }
   }
 
+  removeStudentFromToChange(student_id){
+      this.setState((prevState) => ({
+          toChange: prevState.toChange.filter((e)=>e.student_id!==student_id)
+      }))
+
+      if(this.state.toChange.length === 0){
+          this.setState({view: 'summary'})
+      }
+  }
+
+  changeGrade(student_id,subject,newMark,oldMark){
+      fetch(
+          this.state.baseurl+'update/update/id:'+student_id+'/'+subject+'/'+oldMark+'/'+newMark
+      )
+          .then(
+              () => this.removeStudentFromToChange(student_id)
+          )
+          .catch(
+              (e) => console.log(e)
+          )
+  }
+
+  removeGrade(student_id,subject,grade){
+      fetch(
+          this.state.baseurl+'update/remove/id:'+student_id+'/'+subject+'/'+grade
+      ).then(
+          () => this.removeStudentFromToChange(student_id)
+      )
+  }
+
+  handleGradeChanging(a,el,subject,grade){
+
+      const newValue = a.target.value
+
+      const list = this.state.toChangeGrade
+
+      let isChanged = false
+
+      list.map(
+          (element) => {
+            if(element.student_id === el.student_id &&
+            element.subject === subject){
+                element.newValue = newValue;
+                isChanged = true
+            }
+            return element;
+          }
+      )
+
+      if(!isChanged){
+          list.push({student_id: el.student_id,subject: subject,newValue:newValue,oldValue:grade})
+      }
+
+      this.setState({toChangeGrade: list})
+  }
+
+  updateGradeOnClick(){
+      console.log(this.state.toChangeGrade)
+      this.state.toChangeGrade.forEach(
+          (e) => {
+              this.changeGrade(e.student_id,e.subject,e.newValue,e.oldValue);
+          }
+      )
+
+      this.setState({toChangeGrade: []});
+  }
+
   renderGradesToChange(e){
     this.setState({view:'change'})
   }
 
   mapStudentsSummary(){
     return this.state.students.map(
-        (e)=> (<tr><td><input type="checkbox" onChange={(a)=>this.addToChange(e)}/></td><td>{e.name}</td><td>{e.student_id}</td>{this.mapGrades(e)}</tr>)
+        (e)=> (<tr><td><input type="checkbox" onChange={(a)=>this.addToChange(e)}/></td>
+            <td>{e.name}</td><td>{e.student_id}</td>{this.mapGrades(e)}</tr>)
     )
   }
 
@@ -93,6 +173,57 @@ class Teacher extends Component{
       return (<thead><th>Change</th><th>Name</th><th>Student's id:</th></thead>)
   }
 
+  mapStudentsToOptions(){
+      return this.state.students.map(
+          (e) => <option value={e.student_id}>{e.name}</option>
+      )
+  }
+
+  componentWillReceiveProps(){
+      this.setState((prev)=>({random:!prev.random}))
+  }
+
+  updateData(){
+      return fetch(
+          this.state.baseurl+'getTeacher'
+      )
+          .then(
+              (el) => el.json()
+          )
+          .then(
+              (a) => this.setState({students: a.students})
+          )
+  }
+
+  componentDidMount(){
+      return this.updateData()
+  }
+
+  addGradesToAdd(){
+      fetch(
+          this.state.baseurl+'update/add/id:'+this.state.currentStudent+'/'+
+          this.state.currentSubject+'/'+this.state.currentGrade
+      )
+          .then(
+              () => {
+                  alert("Grade added!");
+                  this.state.updateProps()
+                  this.setState({view:'summary'});
+              }
+          )
+  }
+
+  addStudentToAdd(student_name){
+      this.setState({currentStudent:student_name.target.value})
+  }
+
+  addGradeToAdd(grade){
+      this.setState({currentGrade:grade.target.value})
+  }
+
+  addSubjectToAdd(subject){
+      this.setState({currentSubject:subject.target.value})
+  }
 
   render(){
     if(this.state.view === 'summary'){
@@ -100,7 +231,8 @@ class Teacher extends Component{
             {this.mapHeadersSummary()}
             {this.mapStudentsSummary()}
         </table>
-            <input type="button" onClick={this.renderGradesToChange}/>
+            <input type="button" onClick={this.renderGradesToChange} value="Modify"/>
+            <input type="button" onClick={() => this.updateData()} value="Refresh"/>
         </div>)
     }
     else{
@@ -109,11 +241,24 @@ class Teacher extends Component{
             {<thead>Name</thead>}
             {this.state.toChange.map(
                 (e) => (<tr>{e.grades.map(
-                    (a) => <td>{a.subject}:<input type="number" value={a.grade}/></td>
+                    (a) => <td>{a.subject}:<input defaultValue={a.grade}
+                                                  onChange={(x) => this.handleGradeChanging(x,e,a.subject,a.grade)}/>
+                    <input type="button" onClick={(event) => this.removeGrade(e.student_id,a.subject,a.grade)} value="RM"/></td>
                     )}</tr>)
             )}
         </table>
-      </div>)
+          <input type="button" onClick={this.updateGradeOnClick} value="Update"/>
+          <div>
+                      Pick a student to add a grade:
+                      <select defaultValue={0} onChange={this.addStudentToAdd}>
+                          {this.mapStudentsToOptions()}
+                      </select>
+                      <input type="text" onChange={this.addSubjectToAdd}/>
+                      <input type="number" onChange={this.addGradeToAdd} defaultValue="2"/>
+              <input type="button" onClick={this.addGradesToAdd} value="Add"/>
+          </div>
+      </div>
+      )
     }
   }
 
@@ -122,15 +267,20 @@ class Teacher extends Component{
 class App extends Component {
   constructor(){
     super();
-    this.state = {baseURL: 'http://localhost:8080/',isLoaded:false,view:'log-in'};
+    this.state = {baseURL: 'http://localhost:8080/',isLoaded:false,view:'log-in',rnd:false};
     this.getData();
 
     this.changeText = this.changeText.bind(this);
-    this.changeViewOnClick = this.changeViewOnClick.bind(this)
+    this.changeViewOnClick = this.changeViewOnClick.bind(this);
+    this.getNewProps = this.getNewProps.bind(this);
   }
 
-  getData(){
-    return fetch(this.state.baseURL).then(
+  getData(optionalURL){
+      let currentURL = ''
+      if(optionalURL){
+         currentURL = optionalURL
+      }
+    return fetch(this.state.baseURL+currentURL).then(
         (element) => {
           return element.json()
         }
@@ -141,8 +291,12 @@ class App extends Component {
         }
     ).catch(
         (err) => console.log(err)
-
     )
+  }
+
+  getNewProps(){
+     this.getData('getTeacher');
+     this.setState((prev)=>({rnd:!prev.rnd}))
   }
 
   changeViewOnClick(mode){
@@ -154,7 +308,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getData()
+    this.getData('getTeacher')
   }
 
   getStudentObjectById(id){
@@ -180,7 +334,8 @@ class App extends Component {
     }
     if(this.state.view === 'teacher'){
       return(<div>
-        <Teacher students={this.state.students} name={this.state.name} position={this.state.position}/>
+        <Teacher students={this.state.students} name={this.state.name} position={this.state.position}
+                 requestPropsChange={this.getNewProps} rnd={this.state.rnd}/>
       </div>)
     }
     else{

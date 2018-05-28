@@ -73,7 +73,7 @@ app.get('/getTeacher*',(req,res)=>{
           const collection = db.db('University').collection('InformationSystem')
 
           collection.find({name: "Jakob Bayer"}).toArray((err,object)=>{
-                res.send(object)
+                res.send(object[0])
           })
       }
   })
@@ -131,6 +131,7 @@ const updateDatabase = (updated,db,res) => {
 }
 
 const addMark = (student_id,mark,subject,res) =>{
+    console.log(student_id)
     MongoClient.connect(connectionURL,(err,db)=> {
         const db1 = db.db('University')
         const collection = db1.collection('InformationSystem')
@@ -187,15 +188,17 @@ const updateMark = (student_id,mark,newMark,subject,res) => {
     collection.find({name: "Jakob Bayer"}).toArray((err,object)=>{
         object[0].students.forEach(
             (student) => {
-                let is_updated = false
-                student.grades.forEach(
-                    (e) => {
-                        if(e.grade === mark && !is_updated && e.subject === subject){
-                            is_updated = true
-                            e.grade = newMark
+                if(student.student_id===student_id){
+                    let is_updated = false
+                    student.grades.forEach(
+                        (e) => {
+                            if(e.grade === mark && !is_updated && e.subject === subject){
+                                is_updated = true
+                                e.grade = newMark
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         )
 
@@ -206,9 +209,10 @@ const updateMark = (student_id,mark,newMark,subject,res) => {
 const parseUpdate = (inputURL,res) => {
     const urlParts = url.parse(inputURL.url,true).path.split('/')
 
-    const student_id = parseInt(urlParts[2].substring(3,urlParts[2].length))
+    const student_id = parseInt(urlParts[3].substring(3,urlParts[3].length))
     const grade = parseInt(urlParts[5])
-    switch(urlParts[3]){
+    console.log(urlParts)
+    switch(urlParts[2]){
         case 'add':
             addMark(student_id,grade,urlParts[4],res)
             break
