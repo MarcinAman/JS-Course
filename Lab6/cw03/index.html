@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Formularz
+    </title>
+    <script>
+        const intervalID = setInterval(()=>{
+            fetch('http://localhost:8080/').then(
+                (e) => e.text()
+            )
+            .then(
+                (e) => {
+                    document.getElementById('id').innerHTML = e + ' = ' +eval(e);
+                }
+            )
+            .catch(
+                (err) => console.log(err)
+            )
+        },1000)
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id='id'></div>
+    </main>
+  </body>
+</html>

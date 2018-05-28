@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Formularz
+    </title>
+    <script>
+        /*****************************************************************/
+        /* Funkcja wykonująca (asynchroniczne) zapytanie  do serwera WWW */
+        /*****************************************************************/
+        function zapytanie() {
+                var http_request;
+                http_request = new XMLHttpRequest(); //Utworzenie obiektu reprezentującego zapytanie do serwera WWW
+                if (!http_request){
+                        window.alert('Nie mogę stworzyć instancji obiektu XMLHttpRequest');
+                        return;
+                }
+                if (http_request.overrideMimeType)
+                        http_request.overrideMimeType('text/xml'); //Nadpisanie nagłówka MIME
+
+                //Rejestracja funkcji, która będzie przetwarzać odpowiedź otrzymaną od serwera
+                http_request.onreadystatechange = function() {
+                        odpowiedz(http_request);
+                }
+
+                //Wykonanie (asynchronicznego) zapytania do serwera WWW
+                http_request.open('POST', '/submit?imie='+ document.getElementById('imie').value, true);
+                http_request.send(null);
+        }
+
+        /***********************************************/
+        /* Funkcja przetwarzająca odpowiedź od serwera */
+        /***********************************************/
+        function odpowiedz(http_request){
+                try {
+                        if (http_request.readyState == XMLHttpRequest.DONE) { //Jeżeli odpowiedź jest gotowa
+                                if (http_request.status == 200){ //Jeżeli żądanie było prawidłowe
+                                        var odebrane_dane = http_request.responseText; //Odbierz odpowiedź jako tekst
+                                        window.alert(odebrane_dane); //i wyświetl ją
+                                }
+                                else
+                                        window.alert('Wystąpił problem z tym żądaniem.');
+                        }
+                }
+                catch(e) {
+                        window.alert('Złapany wyjątek: ' + e.description);
+                }
+        }
+        /***********************************************/
+        //  Fetch api
+        /***********************************************/
+        function send_form(){
+            const myRequest = new Request(
+                    '/submit?imie='+ 
+                    document.getElementById('imie').value, 
+                    {method: 'POST'}
+                );
+            fetch(myRequest)
+                .then((response)=>{
+                    return response.text();
+                })
+                .then((text)=>{
+                    window.alert(text);
+                })
+        }
+
+    </script>
+  </head>
+  <body>
+    <main>
+      <form method="get"
+            action="/submit">
+        <label>Wykonaj zapytanie do serwera WWW</label> 
+        Name:<input type="hidden" name="imie" value="Marcin" id="imie">
+                <input type="submit"
+              value="Bez użycia AJAX"> <input type="button"
+              value="Z użyciem AJAX"
+              onclick="send_form()">
+      </form>
+    </main>
+  </body>
+</html>
