@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Formularz
+    </title>
+    <script>
+        let x = 0;
+        let y = 0;
+        const intervalID = setInterval(()=>{
+            fetch('http://localhost:8080/'+document.getElementById('input').value).then(
+                (e) => e.json()
+            )
+            .then(
+                (e) => {
+                  const ctx = document.getElementById('id').getContext('2d');
+                  ctx.strokeStyle = e.color;
+                  console.log(e.points);
+                  e.points.forEach(
+                    (element) => {
+                      ctx.beginPath();
+                      ctx.moveTo(x,y);
+                      ctx.lineTo(element.x,element.y);
+                      ctx.stroke(); 
+                      x = element.x;
+                      y = element.y;
+                    }
+                  )       
+                }
+            )
+            .catch(
+                (err) => console.log(err)
+            )
+        },3000)
+    </script>
+  </head>
+  <body>
+    <main>
+        <input type="text" id = "input" placeholder="N" value="10"></input>
+      <canvas id='id' width="400" height="400">
+
+      </canvas>
+    </main>
+  </body>
+</html>
